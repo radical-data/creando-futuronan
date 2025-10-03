@@ -1,11 +1,115 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import SiteLayout from "../layouts/Layout.astro";
+import Hero from "../components/home/Hero.astro";
+import Programmes from "../components/home/Programmes.astro";
+import Principles from "../components/home/Principles.astro";
+import Partners from "../components/home/Partners.astro";
+import ClosingCTA from "../components/home/ClosingCTA.astro";
+import WhatsHappening from "../components/home/WhatsHappening.svelte";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const headline = "Building futures from here, not elsewhere.";
+const sub =
+  "A practical school for design and digital culture in the ABC SSS Islands. We equip young people and emerging artists to imagine, build, and sustain futures rooted in Caribbean realities.";
+
+const programmes = [
+  {
+    title: "Spark",
+    age: "Ages 12–18",
+    blurb:
+      "Hands-on entry into design, digital storytelling, and creative tech, rooted in everyday island life.",
+    href: "/spark",
+  },
+  {
+    title: "Sustain",
+    age: "Ages 18–28",
+    blurb:
+      "Modular mentorship for emerging artists/designers: from desire and critique to funding, practice, and facilitation.",
+    href: "/sustain",
+  },
+];
+
+const principles = [
+  {
+    title: "Decolonial by design",
+    desc: "We name systems, and build against extractive logics.",
+  },
+  {
+    title: "Stay to build",
+    desc: "Success means making viable creative life here, not leaving.",
+  },
+  {
+    title: "Ecosystem over talent",
+    desc: "We grow collective capacity, not lone stars.",
+  },
+  {
+    title: "Technology with roots",
+    desc: "Digital tools for storytelling, organising, and joy.",
+  },
+];
+
+const partnerCards = [
+  { name: "Radical Data", href: "/about#partners" },
+  { name: "Plataforma Aruba", href: "/about#partners" },
+  { name: "Metabolic Foundation", href: "/about#partners" },
+  { name: "Sprekende Geschiedenis", href: "/about#partners" },
+];
+
+// toggle this on/off per cycle:
+const openCall = {
+  isOpen: false,
+  title: "Applications open for Spark & Sustain",
+  deadlineISO: "2025-10-30T23:59:00-04:00",
+  applyLinks: [
+    { label: "Apply to Spark", href: "/spark#apply" },
+    { label: "Apply to Sustain", href: "/sustain#apply" },
+  ],
+};
+
+const events = [
+  {
+    title: "Spark: Mapping Memory",
+    island: "Aruba",
+    dateISO: "2025-11-15T10:00:00-04:00",
+    href: "/spark#dates",
+  },
+  {
+    title: "Sustain: Desire → Conditions",
+    island: "Online",
+    dateISO: "2025-11-20T18:00:00-04:00",
+    href: "/sustain#timeline",
+  },
+  {
+    title: "Spark: Design for Real Life",
+    island: "Aruba",
+    dateISO: "2025-11-22T10:00:00-04:00",
+    href: "/spark#dates",
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<SiteLayout title="Creando Futuronan">
+  <Hero
+    headline={headline}
+    sub={sub}
+    ctas={[
+      { label: "Join Spark (12–18)", href: "/spark" },
+      { label: "Apply to Sustain (18–28)", href: "/sustain" },
+    ]}
+    image="/images/hero.jpg"
+  />
+
+  <!-- Programmes -->
+  <Programmes cards={programmes} />
+
+  <!-- What’s happening now (Open Call or Events) -->
+  <WhatsHappening client:load openCall={openCall} events={events} />
+
+  <!-- Vision & Approach -->
+  <Principles items={principles} />
+
+  <!-- Partners -->
+  <Partners items={partnerCards} />
+
+  <!-- Closing CTA -->
+  <ClosingCTA />
+</SiteLayout>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  headline: string;
+  sub: string;
+  ctas: { label: string; href: string }[];
+  image?: string;
+}
+const { headline, sub, ctas, image = "/hero.jpg" } = Astro.props;
+---
+
+<section class="relative">
+  <div
+    class="container mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-2 items-center py-12 lg:py-20"
+  >
+    <div>
+      <h1
+        class="text-3xl/tight sm:text-4xl lg:text-5xl font-semibold tracking-tight"
+      >
+        {headline}
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-black/75 max-w-prose">
+        {sub}
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        {
+          ctas.map((c) => (
+            <a
+              href={c.href}
+              class="inline-flex items-center rounded-full bg-black text-white px-5 py-3 text-sm hover:bg-black/90"
+            >
+              {c.label}
+            </a>
+          ))
+        }
+        <a
+          href="/about"
+          class="inline-flex items-center rounded-full border border-black px-5 py-3 text-sm hover:bg-black hover:text-white"
+        >
+          Learn about us
+        </a>
+      </div>
+    </div>
+    <div class="lg:justify-self-end">
+      <img
+        src={image}
+        alt=""
+        class="w-full aspect-[16/10] object-cover rounded-2xl border border-black/10"
+      />
+    </div>
+  </div>
+</section>

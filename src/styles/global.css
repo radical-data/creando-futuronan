@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@import "@fontsource-variable/space-grotesk";
+
+/* Brand tokens */
+@theme {
+  --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #003CE5;
+  --color-accent: #FA035B;
+  --color-lime: #CEF913;
+  --color-ink: #000000;
+  --color-ink/60: color-mix(in oklab, var(--color-ink), transparent 40%);
+  --color-ink/70: color-mix(in oklab, var(--color-ink), transparent 30%);
+  --color-ink/90: color-mix(in oklab, var(--color-ink), transparent 10%);
+  --color-surface: #FFFFFF;
+  --color-bg: #F2F2F2;
+  /* site body background */
+  --color-card: #EAEAEA;
+  /* subtle card bg from deck */
+}
+
+/* Global base tweaks */
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[--color-bg] text-[--color-ink] font-sans antialiased;
+}
+
+/* Reusable brand button patterns */
+@utility btn {
+  @apply inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors;
+}
+
+.btn-primary {
+  @apply btn bg-[--color-ink] text-white hover:bg-[--color-ink/90];
+}
+
+.btn-outline {
+  @apply btn border border-[--color-ink] hover:bg-[--color-ink] hover:text-white;
+}
+
+.btn-ghost {
+  @apply btn border border-[--color-ink]/50 hover:bg-[--color-ink] hover:text-white;
+}
+
+/* Loud hero styling option */
+.hero--brand {
+  background: var(--color-brand);
+  color: white;
+}
+
+.hero--brand .chip {
+  @apply inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold;
+  background: var(--color-lime);
+  color: #052e26;
+  /* readable on lime */
+}
+
+/* Card */
+.card {
+  @apply rounded-2xl border border-black/10 bg-white;
+}
+
+.card-muted {
+  @apply rounded-2xl border border-black/10 bg-[--color-card];
+}
