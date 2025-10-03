@@ -1,0 +1,44 @@
+---
+interface Card {
+  title: string;
+  age: string;
+  blurb: string;
+  href: string;
+}
+interface Props {
+  cards: Card[];
+}
+const { cards } = Astro.props;
+---
+
+<section class="py-10 lg:py-16 border-t border-black/10">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">
+      Programmes
+    </h2>
+    <p class="mt-2 text-black/70 max-w-prose">
+      Two interconnected paths that move from first contact to long-term
+      practice.
+    </p>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {
+        cards.map((c) => (
+          <a
+            href={c.href}
+            class="group block rounded-2xl border border-black/10 bg-white p-6 hover:shadow-[0_8px_0_#000] transition-shadow"
+          >
+            <div class="text-xs uppercase tracking-wide text-black/60">
+              {c.age}
+            </div>
+            <div class="mt-1 text-xl font-semibold">{c.title}</div>
+            <p class="mt-2 text-black/75">{c.blurb}</p>
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+              Explore {c.title}
+              <span aria-hidden>→</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
