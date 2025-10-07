@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ogDefault from "../assets/og.png";
 
 interface Props {
   title?: string;
@@ -10,8 +11,6 @@ const {
   title = "Creando Futuronan",
   description = "A practical school for design & digital culture in Aruba.",
 } = Astro.props;
-
-const og = "/og.jpg";
 ---
 
 <!doctype html>
@@ -22,7 +21,7 @@ const og = "/og.jpg";
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={og} />
+    <meta property="og:image" content={ogDefault.src} />
     <meta name="theme-color" content="#003CE5" />
 
     <title>{title}</title>
