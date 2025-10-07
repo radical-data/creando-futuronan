@@ -5,7 +5,7 @@ import defaultHero from "../../assets/hero.jpg";
 interface Props {
   headline: string;
   sub: string;
-  ctas?: { label: string; href: string; external?: boolean }[];
+  ctas: { label: string; href: string; external?: boolean }[]; // required now
   image?: ImageMetadata;
   alt?: string;
 }
@@ -13,13 +13,14 @@ interface Props {
 const {
   headline,
   sub,
-  ctas = [
-    { label: "Join Creando Spark (12–18)", href: "/spark" },
-    { label: "Apply to Creando Sustain (18–28)", href: "/sustain" },
-  ],
+  ctas,
   image = defaultHero,
   alt = "Stylised of two trees and a computer.",
 } = Astro.props;
+
+if (!ctas || ctas.length === 0) {
+  throw new Error("Hero component requires a non-empty `ctas` array.");
+}
 ---
 
 <section class="relative">
@@ -27,7 +28,6 @@ const {
     class="container mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-2 items-center py-12 lg:py-20"
   >
     <div>
-      <!-- keep the strapline if you like, but not in the nav -->
       <span class="chip mb-2 inline-block"
         >Futuro no ta warda — pusha futuro</span
       >
@@ -37,38 +37,37 @@ const {
       <p class="mt-5 text-base sm:text-lg text-black/75 max-w-prose">{sub}</p>
 
       <div class="mt-5 flex flex-col sm:flex-row sm:flex-wrap gap-3">
-        <a
-          href="/spark"
-          class="btn-primary btn-md sm:btn-lg btn-cap text-black border border-black/10"
-          style="background: var(--color-accent);"
-        >
-          Join Creando Spark (12–18)
-        </a>
-        <a
-          href="/sustain"
-          class="btn-primary btn-md sm:btn-lg btn-cap"
-          style="background: var(--color-brand);"
-          >Apply to Creando Sustain (18–28)</a
-        >
-      </div>
-    </div>
-
-    {
-      ctas?.length > 0 && (
-        <div class="mt-5 flex flex-col sm:flex-row sm:flex-wrap gap-3">
-          {ctas.map((c, i) => (
+        {
+          ctas.map((c, i) => (
             <a
               href={c.href}
-              class={`btn-primary btn-md sm:btn-lg btn-cap ${i === 0 ? "text-black border border-black/10" : ""}`}
-              style={`background: ${i === 0 ? "var(--color-accent)" : "var(--color-brand)"};`}
+              class={`btn-primary btn-md sm:btn-lg btn-cap ${
+                i === 0 ? "text-black border border-black/10" : ""
+              }`}
+              style={`background: ${
+                i === 0 ? "var(--color-accent)" : "var(--color-brand)"
+              };`}
               rel={c.external ? "noopener noreferrer" : undefined}
               target={c.external ? "_blank" : undefined}
             >
               {c.label}
             </a>
-          ))}
-        </div>
-      )
-    }
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="lg:justify-self-end">
+      <Image
+        src={image}
+        alt={alt}
+        widths={[640, 960, 1280, 1600, 1920, 2560]}
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        formats={["avif", "webp", "jpeg"]}
+        loading="eager"
+        fetchpriority="high"
+        class="w-full aspect-[16/10] object-cover rounded-3xl border border-[--color-brand]/30"
+      />
+    </div>
   </div>
 </section>
