@@ -1,7 +1,5 @@
 ---
 import "../styles/global.css";
-import creandoWordmark from "../assets/logos/creando-horizontal.svg";
-import stimuleringsfondsLogoUrl from "../assets/logos/stimuleringsfonds.svg?url";
 import ogDefault from "../assets/og.png";
 
 interface Props {
@@ -38,7 +36,7 @@ const {
         aria-label="Creando Futuronan — Home"
       >
         <img
-          src={creandoWordmark.src}
+          src="/logos/creando-horizontal.svg"
           alt="Creando Futuronan"
           class="h-7"
           width="168"
@@ -50,7 +48,6 @@ const {
       <nav class="flex items-center gap-6 text-sm">
         <a href="/spark" class="hover:underline">Spark</a>
         <a href="/sustain" class="hover:underline">Sustain</a>
-        <a href="/resources" class="hover:underline">Resources</a>
         <a href="/about" class="hover:underline">About</a>
       </nav>
     </header>
@@ -89,7 +86,7 @@ const {
               class="shrink-0"
             >
               <img
-                src={stimuleringsfondsLogoUrl}
+                src="/logos/creative-industries.svg"
                 alt="Stimuleringsfonds Creatieve Industrie"
                 class="h-4 w-auto align-middle"
                 loading="lazy"
@@ -103,7 +100,6 @@ const {
           <div class="flex gap-4">
             <a href="/spark" class="hover:underline">Spark</a>
             <a href="/sustain" class="hover:underline">Sustain</a>
-            <a href="/resources" class="hover:underline">Resources</a>
             <a href="/about" class="hover:underline">About</a>
           </div>
         </div>
