@@ -2,11 +2,13 @@
 import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
-
 import favicons from "astro-favicons";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://creandofuturonan.org",
+  
   vite: {
     plugins: [tailwindcss()],
   },
@@ -26,5 +28,6 @@ export default defineConfig({
       },
       withCapo: true,
     }),
+    sitemap(),
   ],
 });
