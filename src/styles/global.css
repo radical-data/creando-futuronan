@@ -1,10 +1,12 @@
 @import "tailwindcss";
-
 @import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/fraunces";
 
 /* Brand tokens */
 @theme {
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
   --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+
   --color-brand: #003CE5;
   --color-accent: #FA035B;
   --color-lime: #CEF913;
@@ -14,9 +16,7 @@
   --color-ink/90: color-mix(in oklab, var(--color-ink), transparent 10%);
   --color-surface: #FFFFFF;
   --color-bg: #F2F2F2;
-  /* site body background */
   --color-card: #EAEAEA;
-  /* subtle card bg from deck */
 }
 
 /* Global base tweaks */
@@ -32,34 +32,85 @@ body {
   @apply bg-[--color-bg] text-[--color-ink] font-sans antialiased;
 }
 
-/* Reusable brand button patterns */
+/* === Type utilities === */
+.h1,
+.h2,
+.h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 72, "SOFT" 0, "WONK" 0;
+}
+
+.h1 {
+  font-size: clamp(2.6rem, 2.2rem + 1.3vw, 3.6rem);
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+.h2 {
+  font-size: clamp(2rem, 1.8rem + 0.5vw, 2.4rem);
+  line-height: 1.22;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+.h3 {
+  font-size: clamp(1.3rem, 1.2rem + 0.3vw, 1.6rem);
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+
+/* Buttons */
 @utility btn {
   @apply inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors;
 }
 
 .btn-primary {
-  @apply btn bg-[--color-ink] text-white hover:bg-[--color-ink/90];
+  @apply btn bg-[--color-ink] text-white hover:bg-[--color-ink/90] focus:outline-none focus:ring-2 focus:ring-[--color-brand] focus:ring-offset-2;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+}
+
+.btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand) 80%, white 20%);
 }
 
 .btn-outline {
-  @apply btn border border-[--color-ink] hover:bg-[--color-ink] hover:text-white;
+  @apply btn border border-[--color-ink] hover:bg-[--color-ink] hover:text-white focus:outline-none focus:ring-2 focus:ring-[--color-brand] focus:ring-offset-2;
 }
 
 .btn-ghost {
-  @apply btn border border-[--color-ink]/50 hover:bg-[--color-ink] hover:text-white;
+  @apply btn border border-[--color-ink]/50 hover:bg-[--color-ink] hover:text-white focus:outline-none focus:ring-2 focus:ring-[--color-brand] focus:ring-offset-2;
 }
 
-/* Loud hero styling option */
-.hero--brand {
-  background: var(--color-brand);
-  color: white;
+@utility btn-lg {
+  @apply px-6 py-3.5 text-base;
 }
 
-.hero--brand .chip {
+@utility btn-md {
+  @apply px-5 py-3 text-[15px];
+}
+
+.btn-cap {
+  max-width: 22rem;
+}
+
+/* Brand chip */
+.chip {
   @apply inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold;
   background: var(--color-lime);
   color: #052e26;
-  /* readable on lime */
+}
+
+/* Badge */
+.badge {
+  @apply inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide;
 }
 
 /* Card */
@@ -69,4 +120,45 @@ body {
 
 .card-muted {
   @apply rounded-2xl border border-black/10 bg-[--color-card];
+}
+
+/* Divider */
+.brand-divider {
+  background-image: url("/brand-line.svg");
+  background-repeat: repeat-x;
+  background-size: auto 32px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+.brand-divider--fallback {
+  height: 2px;
+  background-image: linear-gradient(90deg,
+      #003CE5 0 25%,
+      #FA035B 25% 50%,
+      #CEF913 50% 75%,
+      #003CE5 75% 100%);
+  background-size: 48px 2px;
+}
+
+/* Partner logo normalisation */
+.logo-box {
+  height: 40px;
+}
+
+@media (min-width: 1024px) {
+  .logo-box {
+    height: 48px;
+  }
+}
+
+.logo-img {
+  max-height: 100%;
+  max-width: 160px;
+  width: auto;
+  object-fit: contain;
+}
+
+.partner-card {
+  min-height: 150px;
 }

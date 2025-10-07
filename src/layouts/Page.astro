@@ -1,0 +1,76 @@
+---
+// src/layouts/Page.astro
+import SiteLayout from "./Layout.astro";
+
+const {
+  frontmatter: {
+    title = "Creando Futuronan",
+    excerpt = "",
+    hero = {},
+    ctas = [],
+    sections = [],
+    faq = [],
+  },
+} = Astro.props;
+---
+
+<SiteLayout title={title} description={excerpt}>
+  <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+    {
+      hero?.kicker && (
+        <p class="text-sm uppercase tracking-wide mb-2">{hero.kicker}</p>
+      )
+    }
+    {hero?.headline && <h1 class="h1">{hero.headline}</h1>}
+    {
+      hero?.subhead && (
+        <div class="prose mt-3 max-w-3xl" set:html={hero.subhead} />
+      )
+    }
+    {
+      ctas?.length > 0 && (
+        <div class="mt-5 flex flex-wrap gap-3">
+          {ctas.map((c) => (
+            <a href={c.href} class="btn-primary btn-md sm:btn-lg btn-cap">
+              {c.label}
+            </a>
+          ))}
+        </div>
+      )
+    }
+    {
+      hero?.cover && (
+        <img
+          src={hero.cover}
+          alt=""
+          class="rounded-2xl mt-8 w-full object-cover"
+        />
+      )
+    }
+    {
+      sections?.map((s) => (
+        <>
+          <h2 class="h2 mt-10">{s.heading}</h2>
+          <div class="prose lg:prose-lg mt-2" set:html={s.body} />
+        </>
+      ))
+    }
+    {
+      faq?.length > 0 && (
+        <>
+          <h2 id="faq" class="h2 mt-12">
+            FAQ
+          </h2>
+          <ul class="mt-4 space-y-6">
+            {faq.map((f) => (
+              <li>
+                <p class="font-semibold">{f.q}</p>
+                <p class="text-black/70">{f.a}</p>
+              </li>
+            ))}
+          </ul>
+        </>
+      )
+    }
+  </section>
+</SiteLayout>
