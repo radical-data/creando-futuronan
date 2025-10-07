@@ -1,5 +1,8 @@
 ---
 import "../styles/global.css";
+import { Image } from "astro:assets";
+import creandoWordmark from "../assets/logos/creando-horizontal.svg";
+import stimuleringsfondsLogo from "../assets/logos/stimuleringsfonds.png";
 import ogDefault from "../assets/og.png";
 
 interface Props {
@@ -36,11 +39,13 @@ const {
         aria-label="Creando Futuronan — Home"
       >
         <img
-          src="logos/creando-horizontal.svg"
+          src={creandoWordmark.src}
           alt="Creando Futuronan"
           class="h-7"
           width="168"
           height="28"
+          loading="eager"
+          decoding="async"
         />
       </a>
       <nav class="flex items-center gap-6 text-sm">
@@ -84,9 +89,11 @@ const {
               aria-label="Stimuleringsfonds Creatieve Industrie"
               class="shrink-0"
             >
-              <img
-                src="/logos/stimuleringsfonds.png"
+              <Image
+                src={stimuleringsfondsLogo}
                 alt="Stimuleringsfonds Creatieve Industrie logo"
+                widths={[96, 128, 160]}
+                sizes="(max-width: 640px) 96px, 128px"
                 class="h-[14px] w-auto sm:h-[16px] align-middle"
                 loading="lazy"
               />

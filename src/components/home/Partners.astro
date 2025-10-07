@@ -1,20 +1,23 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Partner {
   name: string;
   href?: string;
-  logo?: string;
+  // allow both processed rasters and plain SVG URLs
+  logo?: ImageMetadata | string;
   blurb?: string;
 }
-interface Props {
-  items: Partner[];
-}
+
 const { items = [] } = Astro.props;
+const isRaster = (l: Partner["logo"]): l is ImageMetadata =>
+  typeof l === "object" && l !== null && "src" in l;
 ---
 
 <section class="py-10 lg:py-14 border-t border-black/10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="h2">Partners</h2>
-
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
         items.map((p) => (
@@ -24,12 +27,26 @@ const { items = [] } = Astro.props;
           >
             {p.logo && (
               <div class="logo-box mb-3 flex items-center">
-                <img
-                  src={p.logo}
-                  alt={`${p.name} logo`}
-                  class="logo-img"
-                  loading="lazy"
-                />
+                {isRaster(p.logo) ? (
+                  <Image
+                    src={p.logo}
+                    alt={`${p.name} logo`}
+                    widths={[120, 160, 200]}
+                    sizes="(max-width: 1024px) 33vw, 160px"
+                    loading="lazy"
+                    class="logo-img"
+                  />
+                ) : (
+                  <img
+                    src={p.logo}
+                    alt={`${p.name} logo`}
+                    class="logo-img"
+                    loading="lazy"
+                    decoding="async"
+                    width="160"
+                    height="48"
+                  />
+                )}
               </div>
             )}
             <div class="font-medium">{p.name}</div>

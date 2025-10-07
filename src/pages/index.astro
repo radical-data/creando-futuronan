@@ -5,7 +5,15 @@ import Programmes from "../components/home/Programmes.astro";
 import Partners from "../components/home/Partners.astro";
 import ClosingCTA from "../components/home/ClosingCTA.astro";
 import WhatsHappening from "../components/home/WhatsHappening.astro";
-import heroImage from "../assets/hero.jpg";
+import heroImage from "../assets/hero.png";
+
+import radicalDataLogo from "../assets/logos/radical-data.png";
+import plataformaLogo from "../assets/logos/plataforma-aruba.png";
+import brenchiesLogo from "../assets/logos/brenchies-lab.png";
+import afaraiLogo from "../assets/logos/afarai.png";
+import metabolicLogo from "../assets/logos/metabolic.png";
+import counterNarrativesLogo from "../assets/logos/counter-narratives.svg";
+import stimuleringsfondsLogo from "../assets/logos/stimuleringsfonds.png";
 
 const headline = "Building futures from here, not elsewhere.";
 const sub =
@@ -32,48 +40,48 @@ const partnerCards = [
   {
     name: "Radical Data",
     href: "/about#partners",
-    logo: "/logos/radical-data.png",
+    logo: radicalDataLogo,
     blurb:
       "Studio, educational platform & community repurposing tech for liberation + joy.",
   },
   {
     name: "Plataforma Aruba",
     href: "/about#partners",
-    logo: "/logos/plataforma-aruba.png",
+    logo: plataformaLogo,
     blurb:
       "Arts organisation rooted in research, education, and community in Aruba.",
   },
   {
     name: "Brenchie's Lab",
     href: "/about#partners",
-    logo: "/logos/brenchies-lab.png",
+    logo: brenchiesLogo,
     blurb: "Public access maker-space in Aruba. ",
   },
   {
     name: "Afaina de Jong",
     href: "/about#partners",
-    logo: "/logos/afarai.png",
+    logo: afaraiLogo,
     blurb:
       "architect and educator working at the intersection of spatial design, research and art.",
   },
   {
     name: "Metabolic Foundation",
     href: "/about#partners",
-    logo: "/logos/metabolic.png",
+    logo: metabolicLogo,
     blurb:
       "Group of organizations working together to drive systems change and build a sustainable economy.",
   },
   {
     name: "Counter Narratives",
     href: "/about#partners",
-    logo: "/logos/counter-narratives.svg",
+    logo: counterNarrativesLogo,
     blurb:
       "Collaborative multimedia platform for local oral (hi)stories on the ABC-SSS islands and the diaspora.",
   },
   {
     name: "Creative Industries Fund NL",
     href: "https://stimuleringsfonds.nl/",
-    logo: "/logos/stimuleringsfonds.png",
+    logo: stimuleringsfondsLogo,
     blurb:
       "National cultural fund supporting design, architecture, and digital culture projects.",
   },
@@ -127,7 +135,7 @@ const events = [
   <Programmes cards={programmes} />
 
   <!-- What’s happening now (Open Call or Events) -->
-  <WhatsHappening client:load openCall={openCall} events={events} />
+  <WhatsHappening openCall={openCall} events={events} />
 
   <!-- Vision & Approach -->
   <!-- <Principles items={principles} /> -->

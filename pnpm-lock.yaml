@@ -26,9 +26,6 @@ importers:
       sharp:
         specifier: ^0.34.4
         version: 0.34.4
-      svelte:
-        specifier: ^5.39.8
-        version: 5.39.8
       tailwindcss:
         specifier: ^4.1.14
         version: 4.1.14
@@ -644,11 +641,6 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@sveltejs/acorn-typescript@1.0.6':
-    resolution: {integrity: sha512-4awhxtMh4cx9blePWl10HRHj8Iivtqj+2QdDCSMDzxG+XKa9+VCNupQuCuvzEhYPzZSrX+0gC+0lHA/0fFKKQQ==}
-    peerDependencies:
-      acorn: ^8.9.0
-
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
 
@@ -1018,12 +1010,6 @@ packages:
     resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
     engines: {node: '>=12'}
 
-  esm-env@1.2.2:
-    resolution: {integrity: sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==}
-
-  esrap@2.1.0:
-    resolution: {integrity: sha512-yzmPNpl7TBbMRC5Lj2JlJZNPml0tzqoqP5B1JXycNUwtqma9AKCO0M2wHrdgsHcy1WRW7S9rJknAMtByg3usgA==}
-
   estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
@@ -1146,9 +1132,6 @@ packages:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
 
-  is-reference@3.0.3:
-    resolution: {integrity: sha512-ixkJoqQvAP88E6wLydLGGqCJsrFUnqoH6HnaczB8XmDH1oaWU+xxdptvikTgaEhtZ53Ky6YXiBuUI2WXLMCwjw==}
-
   is-wsl@3.1.0:
     resolution: {integrity: sha512-UcVfVfaK4Sc4m7X3dUSoHoozQGBEFeDC+zVo06t98xe8CzHSZZBekNXH+tu0NalHolcJ/QAGqS46Hef7QXBIMw==}
     engines: {node: '>=16'}
@@ -1232,9 +1215,6 @@ packages:
   lightningcss@1.30.1:
     resolution: {integrity: sha512-xi6IyHML+c9+Q3W0S4fCQJOym42pyurFiJUHEcEyHS0CeKzia4yZDEsLlqOFykxOdHpNy0NmvVO31vcSqAxJCg==}
     engines: {node: '>= 12.0.0'}
-
-  locate-character@3.0.0:
-    resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
 
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
@@ -1619,10 +1599,6 @@ packages:
     resolution: {integrity: sha512-gmBGslpoQJtgnMAvOVqGZpEz9dyoKTCzy2nfz/n8aIFhN/jCE/rCmcxabB6jOOHV+0WNnylOxaxBQPSvcWklhA==}
     engines: {node: '>=12'}
 
-  svelte@5.39.8:
-    resolution: {integrity: sha512-KfZ3hCITdxIXTOvrea4nFZX2o+47HPTChKeocgj9BwJQYqWrviVCcPj4boXHF5yf8+eBKqhHY8xii//XaakKXA==}
-    engines: {node: '>=18'}
-
   tailwindcss@4.1.14:
     resolution: {integrity: sha512-b7pCxjGO98LnxVkKjaZSDeNuljC4ueKUddjENJOADtubtdo8llTaJy7HwBMeLNSSo2N5QIAgklslK1+Ir8r6CA==}
 
@@ -1899,9 +1875,6 @@ packages:
   yoctocolors@2.1.2:
     resolution: {integrity: sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==}
     engines: {node: '>=18'}
-
-  zimmerframe@1.1.4:
-    resolution: {integrity: sha512-B58NGBEoc8Y9MWWCQGl/gq9xBCe4IiKM0a2x7GZdQKOW5Exr8S1W24J6OgM1njK8xCRGvAJIL/MxXHf6SkmQKQ==}
 
   zod-to-json-schema@3.24.6:
     resolution: {integrity: sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==}
@@ -2377,10 +2350,6 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@sveltejs/acorn-typescript@1.0.6(acorn@8.15.0)':
-    dependencies:
-      acorn: 8.15.0
-
   '@swc/helpers@0.5.17':
     dependencies:
       tslib: 2.8.1
@@ -2804,12 +2773,6 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  esm-env@1.2.2: {}
-
-  esrap@2.1.0:
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.5
-
   estree-walker@2.0.2: {}
 
   estree-walker@3.0.3:
@@ -2981,10 +2944,6 @@ snapshots:
 
   is-plain-obj@4.1.0: {}
 
-  is-reference@3.0.3:
-    dependencies:
-      '@types/estree': 1.0.8
-
   is-wsl@3.1.0:
     dependencies:
       is-inside-container: 1.0.0
@@ -3043,8 +3002,6 @@ snapshots:
       lightningcss-linux-x64-musl: 1.30.1
       lightningcss-win32-arm64-msvc: 1.30.1
       lightningcss-win32-x64-msvc: 1.30.1
-
-  locate-character@3.0.0: {}
 
   longest-streak@3.1.0: {}
 
@@ -3726,23 +3683,6 @@ snapshots:
     dependencies:
       ansi-regex: 6.2.2
 
-  svelte@5.39.8:
-    dependencies:
-      '@jridgewell/remapping': 2.3.5
-      '@jridgewell/sourcemap-codec': 1.5.5
-      '@sveltejs/acorn-typescript': 1.0.6(acorn@8.15.0)
-      '@types/estree': 1.0.8
-      acorn: 8.15.0
-      aria-query: 5.3.2
-      axobject-query: 4.1.0
-      clsx: 2.1.1
-      esm-env: 1.2.2
-      esrap: 2.1.0
-      is-reference: 3.0.3
-      locate-character: 3.0.0
-      magic-string: 0.30.19
-      zimmerframe: 1.1.4
-
   tailwindcss@4.1.14: {}
 
   tapable@2.3.0: {}
@@ -3943,8 +3883,6 @@ snapshots:
       yoctocolors: 2.1.2
 
   yoctocolors@2.1.2: {}
-
-  zimmerframe@1.1.4: {}
 
   zod-to-json-schema@3.24.6(zod@3.25.76):
     dependencies:
