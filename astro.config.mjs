@@ -3,8 +3,6 @@ import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
-import svelte from "@astrojs/svelte";
-
 import favicons from "astro-favicons";
 
 // https://astro.build/config
@@ -14,7 +12,6 @@ export default defineConfig({
   },
 
   integrations: [
-    svelte(),
     favicons({
       input: "public/favicon.svg",
       name: "Creando Futuronan",
