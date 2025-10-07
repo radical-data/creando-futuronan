@@ -1,11 +1,25 @@
 ---
+import { Image } from "astro:assets";
+import defaultHero from "../../assets/hero.jpg";
+
 interface Props {
   headline: string;
   sub: string;
-  ctas: { label: string; href: string }[];
-  image?: string;
+  ctas?: { label: string; href: string; external?: boolean }[];
+  image?: ImageMetadata;
+  alt?: string;
 }
-const { headline, sub, ctas, image = "/hero.jpg" } = Astro.props;
+
+const {
+  headline,
+  sub,
+  ctas = [
+    { label: "Join Creando Spark (12–18)", href: "/spark" },
+    { label: "Apply to Creando Sustain (18–28)", href: "/sustain" },
+  ],
+  image = defaultHero,
+  alt = "Stylised of two trees and a computer.",
+} = Astro.props;
 ---
 
 <section class="relative">
@@ -13,39 +27,48 @@ const { headline, sub, ctas, image = "/hero.jpg" } = Astro.props;
     class="container mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-2 items-center py-12 lg:py-20"
   >
     <div>
-      <h1
-        class="text-3xl/tight sm:text-4xl lg:text-5xl font-semibold tracking-tight"
+      <!-- keep the strapline if you like, but not in the nav -->
+      <span class="chip mb-2 inline-block"
+        >Futuro no ta warda — pusha futuro</span
       >
-        {headline}
-      </h1>
-      <p class="mt-4 text-base sm:text-lg text-black/75 max-w-prose">
-        {sub}
-      </p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        {
-          ctas.map((c) => (
+
+      <h1 class="h1">{headline}</h1>
+
+      <p class="mt-5 text-base sm:text-lg text-black/75 max-w-prose">{sub}</p>
+
+      <div class="mt-5 flex flex-col sm:flex-row sm:flex-wrap gap-3">
+        <a
+          href="/spark"
+          class="btn-primary btn-md sm:btn-lg btn-cap text-black border border-black/10"
+          style="background: var(--color-accent);"
+        >
+          Join Creando Spark (12–18)
+        </a>
+        <a
+          href="/sustain"
+          class="btn-primary btn-md sm:btn-lg btn-cap"
+          style="background: var(--color-brand);"
+          >Apply to Creando Sustain (18–28)</a
+        >
+      </div>
+    </div>
+
+    {
+      ctas?.length > 0 && (
+        <div class="mt-5 flex flex-col sm:flex-row sm:flex-wrap gap-3">
+          {ctas.map((c, i) => (
             <a
               href={c.href}
-              class="inline-flex items-center rounded-full bg-black text-white px-5 py-3 text-sm hover:bg-black/90"
+              class={`btn-primary btn-md sm:btn-lg btn-cap ${i === 0 ? "text-black border border-black/10" : ""}`}
+              style={`background: ${i === 0 ? "var(--color-accent)" : "var(--color-brand)"};`}
+              rel={c.external ? "noopener noreferrer" : undefined}
+              target={c.external ? "_blank" : undefined}
             >
               {c.label}
             </a>
-          ))
-        }
-        <a
-          href="/about"
-          class="inline-flex items-center rounded-full border border-black px-5 py-3 text-sm hover:bg-black hover:text-white"
-        >
-          Learn about us
-        </a>
-      </div>
-    </div>
-    <div class="lg:justify-self-end">
-      <img
-        src={image}
-        alt=""
-        class="w-full aspect-[16/10] object-cover rounded-2xl border border-black/10"
-      />
-    </div>
+          ))}
+        </div>
+      )
+    }
   </div>
 </section>

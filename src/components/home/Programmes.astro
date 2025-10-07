@@ -17,24 +17,22 @@ const { cards } = Astro.props;
       Programmes
     </h2>
     <p class="mt-2 text-black/70 max-w-prose">
-      Two interconnected paths that move from first contact to long-term
-      practice.
+      We run two programmes that move from first contact to long-term practice.
     </p>
     <div class="mt-8 grid gap-6 md:grid-cols-2">
       {
         cards.map((c) => (
           <a
             href={c.href}
-            class="group block rounded-2xl border border-black/10 bg-white p-6 hover:shadow-[0_8px_0_#000] transition-shadow"
+            class="group block card p-6 transition-all hover:shadow-[0_8px_0_#000] hover:-translate-y-1"
           >
-            <div class="text-xs uppercase tracking-wide text-black/60">
+            <div class="text-xs uppercase tracking-wide text-[--color-brand]">
               {c.age}
             </div>
-            <div class="mt-1 text-xl font-semibold">{c.title}</div>
+            <div class="h3 mt-1">{c.title}</div>
             <p class="mt-2 text-black/75">{c.blurb}</p>
-            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
-              Explore {c.title}
-              <span aria-hidden>→</span>
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium group-hover:underline decoration-[--color-brand] underline-offset-4">
+              Explore {c.title} <span aria-hidden>→</span>
             </div>
           </a>
         ))

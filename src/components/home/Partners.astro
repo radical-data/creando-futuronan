@@ -1,24 +1,50 @@
 ---
-interface Props {
-  items: { name: string; href?: string }[];
+interface Partner {
+  name: string;
+  href?: string;
+  logo?: string;
+  blurb?: string;
 }
-const { items } = Astro.props;
+interface Props {
+  items: Partner[];
+}
+const { items = [] } = Astro.props;
 ---
 
 <section class="py-10 lg:py-14 border-t border-black/10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Partners</h2>
+    <h2 class="h2">Partners</h2>
+
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
         items.map((p) => (
           <a
             href={p.href ?? "/about#partners"}
-            class="rounded-xl border border-black/10 bg-white p-5 hover:bg-black/5"
+            class="card p-5 hover:bg-[--color-card] transition-colors partner-card"
           >
+            {p.logo && (
+              <div class="logo-box mb-3 flex items-center">
+                <img
+                  src={p.logo}
+                  alt={`${p.name} logo`}
+                  class="logo-img"
+                  loading="lazy"
+                />
+              </div>
+            )}
             <div class="font-medium">{p.name}</div>
+            {p.blurb && <p class="text-sm text-black/70 mt-1">{p.blurb}</p>}
           </a>
         ))
       }
+    </div>
+    <div class="mt-8">
+      <a
+        href="/about#partners"
+        class="text-sm font-medium underline hover:no-underline"
+      >
+        Want to collaborate or support? → Get in touch
+      </a>
     </div>
   </div>
 </section>

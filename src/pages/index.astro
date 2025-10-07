@@ -2,56 +2,80 @@
 import SiteLayout from "../layouts/Layout.astro";
 import Hero from "../components/home/Hero.astro";
 import Programmes from "../components/home/Programmes.astro";
-import Principles from "../components/home/Principles.astro";
 import Partners from "../components/home/Partners.astro";
 import ClosingCTA from "../components/home/ClosingCTA.astro";
 import WhatsHappening from "../components/home/WhatsHappening.svelte";
+import heroImage from "../assets/hero.jpg";
 
 const headline = "Building futures from here, not elsewhere.";
 const sub =
-  "A practical school for design and digital culture in the ABC SSS Islands. We equip young people and emerging artists to imagine, build, and sustain futures rooted in Caribbean realities.";
+  "Creando Futuronan is a practical school for design and digital culture in Aruba. We equip young people and artists with the tools to imagine, build, and sustain futures rooted in Caribbean realities.";
 
 const programmes = [
   {
-    title: "Spark",
+    title: "Creando Spark",
     age: "Ages 12–18",
     blurb:
-      "Hands-on entry into design, digital storytelling, and creative tech, rooted in everyday island life.",
+      "A creative playground for coding, AI, and design. Learn, experiment, make cool stuff, try wild ideas and have fun with friends while building your own ideas.",
     href: "/spark",
   },
   {
-    title: "Sustain",
+    title: "Creando Sustain",
     age: "Ages 18–28",
     blurb:
-      "Modular mentorship for emerging artists/designers: from desire and critique to funding, practice, and facilitation.",
+      "A practical school where young creatives learn to imagine, build, and sustain futures, while gaining the skills, networks, and tools to work and grow as creative professionals in the Caribbean.",
     href: "/sustain",
   },
 ];
 
-const principles = [
-  {
-    title: "Decolonial by design",
-    desc: "We name systems, and build against extractive logics.",
-  },
-  {
-    title: "Stay to build",
-    desc: "Success means making viable creative life here, not leaving.",
-  },
-  {
-    title: "Ecosystem over talent",
-    desc: "We grow collective capacity, not lone stars.",
-  },
-  {
-    title: "Technology with roots",
-    desc: "Digital tools for storytelling, organising, and joy.",
-  },
-];
-
 const partnerCards = [
-  { name: "Radical Data", href: "/about#partners" },
-  { name: "Plataforma Aruba", href: "/about#partners" },
-  { name: "Metabolic Foundation", href: "/about#partners" },
-  { name: "Sprekende Geschiedenis", href: "/about#partners" },
+  {
+    name: "Radical Data",
+    href: "/about#partners",
+    logo: "/logos/radical-data.png",
+    blurb:
+      "Studio, educational platform & community repurposing tech for liberation + joy.",
+  },
+  {
+    name: "Plataforma Aruba",
+    href: "/about#partners",
+    logo: "/logos/plataforma-aruba.png",
+    blurb:
+      "Arts organisation rooted in research, education, and community in Aruba.",
+  },
+  {
+    name: "Brenchie's Lab",
+    href: "/about#partners",
+    logo: "/logos/brenchies-lab.png",
+    blurb: "Public access maker-space in Aruba. ",
+  },
+  {
+    name: "AFARAI",
+    href: "/about#partners",
+    logo: "/logos/afarai.png",
+    blurb:
+      "Architecture studio working at the intersection of spatial design, research and art.",
+  },
+  {
+    name: "Metabolic Foundation",
+    href: "/about#partners",
+    logo: "/logos/metabolic.png",
+    blurb: "Public access maker-space in Aruba. ",
+  },
+  {
+    name: "Counter Narratives",
+    href: "/about#partners",
+    logo: "/logos/counter-narratives.svg",
+    blurb:
+      "Collaborative multimedia platform for local oral (hi)stories on the ABC-SSS islands and the diaspora.",
+  },
+  {
+    name: "Creative Industries Fund NL",
+    href: "https://stimuleringsfonds.nl/",
+    logo: "/logos/stimuleringsfonds.png",
+    blurb:
+      "National cultural fund supporting design, architecture, and digital culture projects.",
+  },
 ];
 
 // toggle this on/off per cycle:
@@ -67,22 +91,22 @@ const openCall = {
 
 const events = [
   {
-    title: "Spark: Mapping Memory",
+    title: "Creando Spark: Info Session",
     island: "Aruba",
-    dateISO: "2025-11-15T10:00:00-04:00",
-    href: "/spark#dates",
+    dateISO: "2025-10-11T10:00:00-04:00",
+    href: "/spark#info",
   },
   {
-    title: "Sustain: Desire → Conditions",
+    title: "Creando Spark: Info Session",
+    island: "Aruba",
+    dateISO: "2025-10-18T10:00:00-04:00",
+    href: "/spark#info",
+  },
+  {
+    title: "Creando Sustain: Info Session (Online)",
     island: "Online",
-    dateISO: "2025-11-20T18:00:00-04:00",
-    href: "/sustain#timeline",
-  },
-  {
-    title: "Spark: Design for Real Life",
-    island: "Aruba",
-    dateISO: "2025-11-22T10:00:00-04:00",
-    href: "/spark#dates",
+    dateISO: "2025-10-18T15:00:00-04:00",
+    href: "/sustain#info",
   },
 ];
 ---
@@ -95,7 +119,7 @@ const events = [
       { label: "Join Spark (12–18)", href: "/spark" },
       { label: "Apply to Sustain (18–28)", href: "/sustain" },
     ]}
-    image="/images/hero.jpg"
+    image={heroImage}
   />
 
   <!-- Programmes -->
@@ -105,7 +129,7 @@ const events = [
   <WhatsHappening client:load openCall={openCall} events={events} />
 
   <!-- Vision & Approach -->
-  <Principles items={principles} />
+  <!-- <Principles items={principles} /> -->
 
   <!-- Partners -->
   <Partners items={partnerCards} />
