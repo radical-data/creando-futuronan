@@ -7,117 +7,23 @@ import ClosingCTA from "../components/home/ClosingCTA.astro";
 import WhatsHappening from "../components/home/WhatsHappening.astro";
 import heroImage from "../assets/hero.png";
 
-import radicalDataLogo from "../assets/logos/radical-data.png";
-import plataformaLogo from "../assets/logos/plataforma-aruba.png";
-import brenchiesLogo from "../assets/logos/brenchies-lab.png";
-import afaraiLogo from "../assets/logos/afarai.png";
-import metabolicLogo from "../assets/logos/metabolic.png";
-import counterNarrativesLogo from "../assets/logos/counter-narratives.svg?url";
-import stimuleringsfondsLogo from "../assets/logos/stimuleringsfonds.svg?url";
+import { getCollection } from "astro:content";
+
+const programmes = (await getCollection("programmes")).map((p) => p.data);
+const partnerCards = (await getCollection("partners")).map((p) => p.data);
+const events = (await getCollection("events"))
+  .map((e) => ({
+    ...e.data,
+    dateISO: e.data.dateISO.toISOString(),
+  }))
+  .sort(
+    (a, b) => new Date(a.dateISO).getTime() - new Date(b.dateISO).getTime()
+  );
+const openCalls = (await getCollection("open-calls")).map((o) => o.data);
 
 const headline = "Building futures from here, not elsewhere.";
 const sub =
   "Creando Futuronan is a practical school for design and digital culture in Aruba. We equip young people and artists with the tools to imagine, build, and sustain futures rooted in Caribbean realities.";
-
-const programmes = [
-  {
-    title: "Creando Spark",
-    age: "Ages 12–18",
-    blurb:
-      "A creative playground for coding, AI, and design. Learn, experiment, make cool stuff, try wild ideas and have fun with friends while building your own ideas.",
-    href: "/spark",
-  },
-  {
-    title: "Creando Sustain",
-    age: "Ages 18–28",
-    blurb:
-      "A practical school where young creatives learn to imagine, build, and sustain futures, while gaining the skills, networks, and tools to work and grow as creative professionals in the Caribbean.",
-    href: "/sustain",
-  },
-];
-
-const partnerCards = [
-  {
-    name: "Radical Data",
-    href: "/about#partners",
-    logo: radicalDataLogo,
-    blurb:
-      "Studio, educational platform & community repurposing tech for liberation + joy.",
-  },
-  {
-    name: "Plataforma Aruba",
-    href: "/about#partners",
-    logo: plataformaLogo,
-    blurb:
-      "Arts organisation rooted in research, education, and community in Aruba.",
-  },
-  {
-    name: "Brenchie's Lab",
-    href: "/about#partners",
-    logo: brenchiesLogo,
-    blurb: "Public access maker-space in Aruba. ",
-  },
-  {
-    name: "Afaina de Jong",
-    href: "/about#partners",
-    logo: afaraiLogo,
-    blurb:
-      "architect and educator working at the intersection of spatial design, research and art.",
-  },
-  {
-    name: "Metabolic Foundation",
-    href: "/about#partners",
-    logo: metabolicLogo,
-    blurb:
-      "Group of organizations working together to drive systems change and build a sustainable economy.",
-  },
-  {
-    name: "Counter Narratives",
-    href: "/about#partners",
-    logo: counterNarrativesLogo,
-    blurb:
-      "Collaborative multimedia platform for local oral (hi)stories on the ABC-SSS islands and the diaspora.",
-  },
-  {
-    name: "Creative Industries Fund NL",
-    href: "https://stimuleringsfonds.nl/",
-    logo: stimuleringsfondsLogo,
-    blurb:
-      "National cultural fund supporting design, architecture, and digital culture projects.",
-  },
-];
-
-// toggle this on/off per cycle:
-const openCall = {
-  isOpen: false,
-  title: "Applications open for Spark & Sustain",
-  deadlineISO: "2025-10-30T23:59:00-04:00",
-  applyLinks: [
-    { label: "Apply to Spark", href: "/spark#apply" },
-    { label: "Apply to Sustain", href: "/sustain#apply" },
-  ],
-};
-
-const events = [
-  {
-    title: "Creando Spark: Info Session",
-    island: "Aruba",
-    dateISO: "2025-10-11T10:00:00-04:00",
-    href: "/spark#info",
-  },
-  {
-    title: "Creando Spark: Info Session",
-    island: "Aruba",
-    dateISO: "2025-10-18T10:00:00-04:00",
-    href: "/spark#info",
-  },
-  {
-    title: "Creando Sustain: Info Session (Online)",
-    island: "Online",
-    dateISO: "2025-10-18T15:00:00-04:00",
-    href: "/sustain#info",
-  },
-];
 ---
 
 <SiteLayout title="Creando Futuronan">
@@ -135,10 +41,7 @@ const events = [
   <Programmes cards={programmes} />
 
   <!-- What’s happening now (Open Call or Events) -->
-  <WhatsHappening openCall={openCall} events={events} />
-
-  <!-- Vision & Approach -->
-  <!-- <Principles items={principles} /> -->
+  <WhatsHappening openCall={openCalls} events={events} />
 
   <!-- Partners -->
   <Partners items={partnerCards} />
