@@ -1,5 +1,8 @@
 ---
 import "../styles/global.css";
+import creandoWordmark from "../assets/logos/creando-horizontal.svg";
+import stimuleringsfondsLogoUrl from "../assets/logos/stimuleringsfonds.svg?url";
+import ogDefault from "../assets/og.png";
 
 interface Props {
   title?: string;
@@ -10,8 +13,6 @@ const {
   title = "Creando Futuronan",
   description = "A practical school for design & digital culture in Aruba.",
 } = Astro.props;
-
-const og = "/og.jpg";
 ---
 
 <!doctype html>
@@ -22,10 +23,9 @@ const og = "/og.jpg";
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={og} />
+    <meta property="og:image" content={ogDefault.src} />
     <meta name="theme-color" content="#003CE5" />
 
-    <link rel="icon" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body class="bg-[--color-bg] text-black font-sans antialiased">
@@ -38,11 +38,13 @@ const og = "/og.jpg";
         aria-label="Creando Futuronan — Home"
       >
         <img
-          src="logos/creando-horizontal.svg"
+          src={creandoWordmark.src}
           alt="Creando Futuronan"
           class="h-7"
           width="168"
           height="28"
+          loading="eager"
+          decoding="async"
         />
       </a>
       <nav class="flex items-center gap-6 text-sm">
@@ -87,10 +89,11 @@ const og = "/og.jpg";
               class="shrink-0"
             >
               <img
-                src="/logos/stimuleringsfonds.png"
-                alt="Stimuleringsfonds Creatieve Industrie logo"
-                class="h-[14px] w-auto sm:h-[16px] align-middle"
+                src={stimuleringsfondsLogoUrl}
+                alt="Stimuleringsfonds Creatieve Industrie"
+                class="h-4 w-auto align-middle"
                 loading="lazy"
+                decoding="async"
               />
             </a>
           </div>
