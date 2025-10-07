@@ -31,8 +31,10 @@ const isRaster = (l: Partner["logo"]): l is ImageMetadata =>
                   <Image
                     src={p.logo}
                     alt={`${p.name} logo`}
-                    widths={[120, 160, 200]}
+                    widths={[160, 240, 320]}
                     sizes="(max-width: 1024px) 33vw, 160px"
+                    format="png"
+                    quality={100}
                     loading="lazy"
                     class="logo-img"
                   />
@@ -43,8 +45,6 @@ const isRaster = (l: Partner["logo"]): l is ImageMetadata =>
                     class="logo-img"
                     loading="lazy"
                     decoding="async"
-                    width="160"
-                    height="48"
                   />
                 )}
               </div>

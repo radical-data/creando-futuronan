@@ -1,8 +1,7 @@
 ---
 import "../styles/global.css";
-import { Image } from "astro:assets";
 import creandoWordmark from "../assets/logos/creando-horizontal.svg";
-import stimuleringsfondsLogo from "../assets/logos/stimuleringsfonds.png";
+import stimuleringsfondsLogoUrl from "../assets/logos/stimuleringsfonds.svg?url";
 import ogDefault from "../assets/og.png";
 
 interface Props {
@@ -89,13 +88,12 @@ const {
               aria-label="Stimuleringsfonds Creatieve Industrie"
               class="shrink-0"
             >
-              <Image
-                src={stimuleringsfondsLogo}
-                alt="Stimuleringsfonds Creatieve Industrie logo"
-                widths={[96, 128, 160]}
-                sizes="(max-width: 640px) 96px, 128px"
-                class="h-[14px] w-auto sm:h-[16px] align-middle"
+              <img
+                src={stimuleringsfondsLogoUrl}
+                alt="Stimuleringsfonds Creatieve Industrie"
+                class="h-4 w-auto align-middle"
                 loading="lazy"
+                decoding="async"
               />
             </a>
           </div>
