@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+
+// Get events from content collections
+const events = (await getCollection("events"))
+  .map((e) => ({
+    ...e.data,
+    dateISO: e.data.dateISO.toISOString(),
+  }))
+  .sort(
+    (a, b) => new Date(a.dateISO).getTime() - new Date(b.dateISO).getTime()
+  )
+  .filter(event => new Date(event.dateISO) >= new Date()); // Only upcoming events
+
+// Group events by program stream
+const sparkEvents = events.filter(event => event.programme === 'spark');
+const sustainEvents = events.filter(event => event.programme === 'sustain');
+
+// Helper function to format date
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout title="Upcoming Events" description="Join us for workshops, info sessions, and program activities.">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">Upcoming Events</h1>
+        <p class="text-xl text-black/70">Join us for workshops, info sessions, and program activities.</p>
+      </div>
+
+      {events.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-lg text-black/60">No upcoming events at the moment.</p>
+        </div>
+      ) : (
+        <div class="space-y-12">
+          <!-- Spark Events -->
+          {sparkEvents.length > 0 && (
+            <section>
+              <h2 class="text-2xl font-semibold mb-6 flex items-center gap-3">
+                <span class="stream-indicator stream-indicator-spark"></span>
+                Spark Events
+              </h2>
+              <div class="grid gap-6 md:grid-cols-2">
+                {sparkEvents.map((event) => (
+                  <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                      <div class="flex-1">
+                        <h3 class="text-xl font-semibold mb-2">{event.title}</h3>
+                        <div class="flex items-center gap-4 text-sm text-black/60 mb-3">
+                          <span>📅 {formatDate(event.dateISO)}</span>
+                          <span class={`px-2 py-1 rounded-full text-xs ${
+                            event.island === 'Online' 
+                              ? 'bg-blue-100 text-blue-800' 
+                              : 'bg-green-100 text-green-800'
+                          }`}>
+                            {event.island === 'Online' ? 'Online' : 'In Person'}
+                          </span>
+                        </div>
+                        <div class="text-sm text-black/60">
+                          📍 {event.island}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-3">
+                      <a 
+                        href={event.href}
+                        class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors text-sm"
+                      >
+                        Learn More
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <!-- Sustain Events -->
+          {sustainEvents.length > 0 && (
+            <section>
+              <h2 class="text-2xl font-semibold mb-6 flex items-center gap-3">
+                <span class="stream-indicator stream-indicator-sustain"></span>
+                Sustain Events
+              </h2>
+              <div class="grid gap-6 md:grid-cols-2">
+                {sustainEvents.map((event) => (
+                  <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                      <div class="flex-1">
+                        <h3 class="text-xl font-semibold mb-2">{event.title}</h3>
+                        <div class="flex items-center gap-4 text-sm text-black/60 mb-3">
+                          <span>📅 {formatDate(event.dateISO)}</span>
+                          <span class={`px-2 py-1 rounded-full text-xs ${
+                            event.island === 'Online' 
+                              ? 'bg-blue-100 text-blue-800' 
+                              : 'bg-green-100 text-green-800'
+                          }`}>
+                            {event.island === 'Online' ? 'Online' : 'In Person'}
+                          </span>
+                        </div>
+                        <div class="text-sm text-black/60">
+                          📍 {event.island}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex gap-3">
+                      <a 
+                        href={event.href}
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                      >
+                        Learn More
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

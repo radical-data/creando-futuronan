@@ -1,95 +1,61 @@
 ---
-import SiteLayout from "../layouts/Layout.astro";
-import Hero from "../components/home/Hero.astro";
-import heroImage from "../assets/hero.png";
+import ProgramLayout from "../layouts/ProgramLayout.astro";
 ---
 
-<SiteLayout
+<ProgramLayout
   title="Creando Sustain — Creando Futuronan"
   description="A school for building futures that actually last."
->
-  <Hero
-    headline="Creando Sustain (18–30)"
-    sub="A school for building futures that actually last — where imagination meets survival skills."
-    ctas={[
-      { label: "Express interest", href: "#apply" },
-      { label: "Intro session", href: "#intro" },
-    ]}
-    image={heroImage}
-  />
-
-  <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-    <div class="prose prose-sm sm:prose lg:prose-lg max-w-none">
-      <p>
-        You’ll learn how to make a living <em>and</em> make a difference — grow your
-        craft and your community. It’s not about chasing “success.” It’s about making
-        futures that can hold us.
-      </p>
-
-      <h2 class="h2 mt-10">About the programme</h2>
-      <p>
-        An intensive <strong>8-session evening laboratory</strong> (2× per week)
-        for young creatives. Develop a project prototype rooted in your reality,
-        with mentorship and peer support.
-      </p>
-      <ul>
-        <li>
-          <strong>When:</strong> Tue & Thu evenings — 11 Nov to 6 Dec (in person)
-        </li>
-        <li><strong>Commitment:</strong> Full attendance required</li>
-        <li><strong>Support:</strong> Stipend awarded upon completion</li>
-      </ul>
-
-      <h3 class="h3 mt-10">Methodologies</h3>
-      <p>
-        <strong>Contextual Design:</strong> Design from your own stories, culture,
-        and environment.
-      </p>
-      <p>
-        <strong>Popular Education:</strong> Learning as a collective act of resistance.
-      </p>
-      <p>
-        <strong>Radical Data:</strong> Desire → Systems → Imagination → Making.
-      </p>
-
-      <h3 class="h3 mt-10" id="team">Team</h3>
-      <p>
-        Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation,
-        Counter/Narratives & Afaina de Jong. See <a href="/about#partners"
-          >partners →</a>
-      </p>
-
-      <h3 class="h3 mt-10">Location</h3>
-      <p>
-        <strong>RAA! (Residencia Artistico Aruba)</strong><br />Caya Betico
-        Croes 110, Oranjestad, Aruba
-      </p>
-
-      <h3 class="h3 mt-10">Language</h3>
-      <p>Sessions in English, with support in Papiamento and Spanish.</p>
-
-      <h3 class="h3 mt-10" id="intro">Open intro session</h3>
-      <p>
-        <strong>Sat, 18 Oct — 11:00</strong> at <strong>RAA!</strong>. We’ll
-        present the school’s vision and programme.
-      </p>
-
-      <h3 class="h3 mt-10" id="apply">How to apply</h3>
-      <p>
-        After the intro, submit a short motivation letter or video via WhatsApp: <a
-          href="https://wa.me/2975689420"
-          target="_blank"
-          rel="noopener">+297 568 9420</a
-        >.
-      </p>
-      <p>
-        <a
-          href="#apply"
-          class="btn-primary btn-md"
-          style="background: var(--color-brand);">Express interest</a
-        >
-        <a href="#intro" class="btn-outline btn-md ml-2">Intro details</a>
-      </p>
-    </div>
-  </section>
-</SiteLayout>
+  headline="Creando Sustain"
+  sub="A school for building futures that actually last — where imagination meets survival skills."
+  ageRange="18–30"
+  ctas={[
+    { label: "Apply to Sustain", href: "https://wa.me/2975689420" },
+    { label: "Intro details", href: "#intro" },
+  ]}
+  programColor="var(--color-sustain)"
+  streamClass="stream-sustain"
+  muxPlaybackId="2vMbR4rTrjrhhijGDRs6MfSBkjQdwFT02B02h7yIiYUVU"
+  aboutContent="You'll learn how to make a living and make a difference — grow your craft and your community. It's not about chasing 'success.' It's about making futures that can hold us."
+  schedule="An intensive 8-session evening laboratory (2× per week) for young creatives. Develop a project prototype rooted in your reality, with mentorship and peer support. Tue & Thu evenings — 11 Nov to 6 Dec (in person). Full attendance required. All participants completing the program receive a stipend."
+  methodologies={[
+    {
+      title: "Contextual Design",
+      description: "Design from your own stories, culture, and environment."
+    },
+    {
+      title: "Popular Education",
+      description: "Learning as a collective act of resistance."
+    },
+    {
+      title: "Radical Data",
+      description: "Desire → Systems → Imagination → Making."
+    }
+  ]}
+  team="Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. See partners →"
+  location="RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba"
+  language="Sessions in English, with support in Papiamento and Spanish."
+  introSession="Sat, 18 Oct — 11:00 at RAA!. We presented the school's vision and programme. Watch the recorded info session below:"
+  applicationInfo="After the intro, submit a short motivation letter or video on WhatsApp: +297 568 9420"
+  faqs={[
+        {
+          question: "Who can join?",
+          answer: "Young creatives aged 18–30, based in the ABC SSS Islands."
+        },
+    {
+      question: "What's the time commitment?",
+      answer: "8 evening sessions (2× per week) from 11 Nov to 6 Dec. Full attendance required."
+    },
+    {
+      question: "Is there financial support?",
+      answer: "Yes, a stipend is awarded upon completion of the program."
+    },
+    {
+      question: "What will I create?",
+      answer: "You'll develop a project prototype rooted in your reality, with mentorship and peer support."
+    },
+    {
+      question: "How do I apply?",
+      answer: "Attend the intro session, then submit a motivation letter or video on WhatsApp."
+    }
+  ]}
+/>

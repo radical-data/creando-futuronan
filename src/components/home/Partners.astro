@@ -15,27 +15,27 @@ const { items = [] } = Astro.props as { items: Partner[] };
 <section class="py-10 lg:py-14 border-t border-black/10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="h2">Partners</h2>
-    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {
         items.map((p) => (
           <a
             href={p.href ?? "/about#partners"}
-            class="card p-5 hover:bg-[--color-card] transition-colors partner-card"
+            class="card card-interactive p-6 partner-card group"
           >
-            <div class="logo-box mb-3 flex items-center">
+            <div class="logo-box mb-4 flex items-center justify-center h-20">
               <Image
                 src={p.logo}
                 alt={`${p.name} logo`}
                 widths={[160, 240, 320]}
-                sizes="(max-width: 1024px) 33vw, 160px"
+                sizes="(max-width: 1024px) 25vw, 160px"
                 format="png"
                 quality={100}
                 loading="lazy"
-                class="logo-img"
+                class="max-h-16 w-auto object-contain group-hover:scale-110 transition-transform duration-200"
               />
             </div>
-            <div class="font-medium">{p.name}</div>
-            {p.blurb && <p class="text-sm text-black/70 mt-1">{p.blurb}</p>}
+            <div class="font-semibold text-base">{p.name}</div>
+            {p.blurb && <p class="text-sm text-black/70 mt-2 leading-relaxed">{p.blurb}</p>}
           </a>
         ))
       }
