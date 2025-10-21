@@ -7,7 +7,11 @@ interface Props {
   sub: string;
   ctas: { label: string; href: string; external?: boolean }[]; // required now
   image?: ImageMetadata;
+  video?: string; // Path to video file
   alt?: string;
+  ageRange?: string;
+  programColor?: string;
+  streamClass?: string;
 }
 
 const {
@@ -15,7 +19,11 @@ const {
   sub,
   ctas,
   image = defaultHero,
+  video,
   alt = "Stylised of two trees and a computer.",
+  ageRange,
+  programColor,
+  streamClass,
 } = Astro.props;
 
 if (!ctas || ctas.length === 0) {
@@ -32,42 +40,86 @@ if (!ctas || ctas.length === 0) {
         >Futuro no ta warda — pusha futuro</span
       >
 
+      {ageRange && (
+        <div class="mb-3">
+          <div class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${streamClass || ''}`} style={programColor ? `background-color: ${programColor}20; color: ${programColor};` : ''}>
+            <span class={`stream-indicator ${streamClass === 'stream-spark' ? 'stream-indicator-spark' : 'stream-indicator-sustain'}`}></span>
+            {ageRange}
+          </div>
+        </div>
+      )}
+
       <h1 class="h1">{headline}</h1>
 
       <p class="mt-5 text-base sm:text-lg text-black/75 max-w-prose">{sub}</p>
 
-      <div class="mt-5 flex flex-col sm:flex-row sm:flex-wrap gap-3">
+      <div class="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-4">
         {
-          ctas.map((c, i) => (
-            <a
-              href={c.href}
-              class={`btn-primary btn-md sm:btn-lg btn-cap ${
-                i === 0 ? "text-black border border-black/10" : ""
-              }`}
-              style={`background: ${
-                i === 0 ? "var(--color-accent)" : "var(--color-brand)"
-              };`}
-              rel={c.external ? "noopener noreferrer" : undefined}
-              target={c.external ? "_blank" : undefined}
-            >
-              {c.label}
-            </a>
-          ))
+          ctas.map((c, i) => {
+            const isSpark = c.label.includes('Spark');
+            const buttonColor = isSpark ? 'var(--color-spark)' : 'var(--color-sustain)';
+            const isPrimary = i === 0;
+            
+            return (
+              <a
+                href={c.href}
+                class={`${isPrimary ? 'btn-primary' : 'btn-outline'} btn-md sm:btn-lg btn-cap font-bold shadow-lg hover:shadow-xl`}
+                style={isPrimary ? {
+                  background: isSpark ? '#D6004A' : buttonColor, // Darker pink for better contrast
+                  borderColor: isSpark ? '#D6004A' : buttonColor,
+                  color: 'white'
+                } : {
+                  borderColor: buttonColor,
+                  color: buttonColor
+                }}
+                rel={c.external ? "noopener noreferrer" : undefined}
+                target={c.external ? "_blank" : undefined}
+              >
+                {c.label}
+              </a>
+            );
+          })
         }
       </div>
     </div>
 
     <div class="lg:justify-self-end">
-      <Image
-        src={image}
-        alt={alt}
-        widths={[640, 960, 1280, 1600, 1920, 2560]}
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        formats={["avif", "webp", "jpeg"]}
-        loading="eager"
-        fetchpriority="high"
-        class="w-full aspect-[16/10] object-cover rounded-3xl border border-[--color-brand]/30"
-      />
+      {video ? (
+        <div class="relative w-full aspect-[9/16] sm:aspect-[16/10] rounded-3xl border border-[--color-brand]/30 overflow-hidden">
+          <video
+            src={video}
+            autoplay
+            muted
+            loop
+            playsinline
+            class="w-full h-full object-cover"
+            poster={image.src}
+          >
+            <!-- Fallback for browsers that don't support video -->
+            <Image
+              src={image}
+              alt={alt}
+              widths={[640, 960, 1280, 1600, 1920, 2560]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              format="webp"
+              loading="eager"
+              fetchpriority="high"
+              class="w-full h-full object-cover"
+            />
+          </video>
+        </div>
+      ) : (
+        <Image
+          src={image}
+          alt={alt}
+          widths={[640, 960, 1280, 1600, 1920, 2560]}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          format="webp"
+          loading="eager"
+          fetchpriority="high"
+          class="w-full aspect-[16/10] object-cover rounded-3xl border border-[--color-brand]/30"
+        />
+      )}
     </div>
   </div>
 </section>

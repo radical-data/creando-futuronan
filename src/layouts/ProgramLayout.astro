@@ -1,0 +1,160 @@
+---
+import SiteLayout from "./Layout.astro";
+import Hero from "../components/home/Hero.astro";
+import Application from "../components/Application.astro";
+import heroImage from "../assets/hero.png";
+
+interface Props {
+  title: string;
+  description: string;
+  headline: string;
+  sub: string;
+  ageRange?: string;
+  ctas: { label: string; href: string }[];
+  programColor: string;
+  streamClass: string;
+  aboutContent: string;
+  schedule: string;
+  methodologies: Array<{
+    title: string;
+    description: string;
+  }>;
+  team: string;
+  location: string;
+  language: string;
+  introSession?: string;
+  applicationInfo: string;
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+const {
+  title,
+  description,
+  headline,
+  sub,
+  ageRange,
+  ctas,
+  programColor,
+  streamClass,
+  aboutContent,
+  schedule,
+  methodologies,
+  team,
+  location,
+  language,
+  introSession,
+  applicationInfo,
+  faqs,
+} = Astro.props;
+---
+
+<SiteLayout title={title} description={description}>
+  <Hero
+    headline={headline}
+    sub={sub}
+    ctas={ctas}
+    image={heroImage}
+    ageRange={ageRange}
+    programColor={programColor}
+    streamClass={streamClass}
+  />
+
+  <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="prose prose-sm sm:prose lg:prose-lg max-w-none">
+
+      <div class="text-lg font-medium text-black/80 mb-6">
+        {aboutContent}
+      </div>
+
+      <h2 class="h2 mt-10">About the programme</h2>
+      <p class="text-lg">
+        {schedule}
+      </p>
+
+      <h3 class="h3 mt-10">Methodologies</h3>
+      <div class="grid gap-6 md:grid-cols-3 mt-6">
+        {methodologies.map((method) => (
+          <div class={`p-6 rounded-2xl border ${streamClass}`} style={`border-color: var(--stream-color-medium); background-color: var(--stream-color-light);`}>
+            <h4 class="font-semibold text-lg mb-2" style={`color: ${programColor};`}>
+              {method.title}
+            </h4>
+            <p class="text-black/75">{method.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="h3 mt-10" id="team">Team</h3>
+      <p>{team}</p>
+
+      <h3 class="h3 mt-10">Location</h3>
+      <p class="mb-4">{location}</p>
+      <div class="w-full h-64 rounded-lg overflow-hidden border border-gray-200 bg-gray-100 flex items-center justify-center">
+        <div class="text-center">
+          <div class="text-lg font-semibold mb-2">📍 RAA! Location</div>
+          <div class="text-sm text-gray-600 mb-4">Caya Betico Croes 110, Oranjestad</div>
+          <a 
+            href="https://www.openstreetmap.org/?mlat=12.519242655924943&mlon=-70.03121669159488&zoom=16&layers=M"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            View on OpenStreetMap
+          </a>
+        </div>
+      </div>
+
+      <h3 class="h3 mt-10">Language</h3>
+      <p>{language}</p>
+
+      {introSession && (
+        <>
+          <h3 class="h3 mt-10" id="intro">Open intro session</h3>
+          <p set:html={introSession}></p>
+          {headline.includes('Sustain') && (
+            <div class="mt-6">
+              <div class="aspect-video w-full max-w-2xl mx-auto">
+                <iframe 
+                  src="https://www.youtube.com/embed/SDIFPa0jIF0" 
+                  title="Sustain Info Session Recording"
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen
+                  class="w-full h-full rounded-lg"
+                ></iframe>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
+      <h3 class="h3 mt-10" id="apply">How to apply</h3>
+      <p class="mb-6">{applicationInfo}</p>
+      
+      <!-- Enhanced Application Component -->
+      <Application 
+        program={streamClass === 'stream-spark' ? 'spark' : 'sustain'}
+        whatsappNumber="+297 568 9420"
+      />
+
+      <h3 class="h3 mt-10" id="faq">FAQs</h3>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-lg hover:text-black/80 focus-ring rounded p-2 -m-2">
+              {faq.question}
+            </summary>
+            <p class="mt-2 text-black/75 pl-4 border-l-2" style={`border-color: ${programColor};`}>
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</SiteLayout>

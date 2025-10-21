@@ -19,23 +19,34 @@ const { cards } = Astro.props;
     <p class="mt-2 text-black/70 max-w-prose">
       We run two programmes that move from first contact to long-term practice.
     </p>
-    <div class="mt-8 grid gap-6 md:grid-cols-2">
+    <div class="mt-10 grid gap-8 md:grid-cols-2">
       {
-        cards.map((c) => (
-          <a
-            href={c.href}
-            class="group block card p-6 transition-all hover:shadow-[0_8px_0_#000] hover:-translate-y-1"
-          >
-            <div class="text-xs uppercase tracking-wide text-[--color-brand]">
-              {c.age}
-            </div>
-            <div class="h3 mt-1">{c.title}</div>
-            <p class="mt-2 text-black/75">{c.blurb}</p>
-            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium group-hover:underline decoration-[--color-brand] underline-offset-4">
-              Explore {c.title} <span aria-hidden>→</span>
-            </div>
-          </a>
-        ))
+        cards.map((c, index) => {
+          const isSpark = c.title.includes('Spark');
+          const streamColor = isSpark ? 'var(--color-spark)' : 'var(--color-sustain)';
+          const streamClass = isSpark ? 'stream-spark' : 'stream-sustain';
+          const indicatorClass = isSpark ? 'stream-indicator-spark' : 'stream-indicator-sustain';
+          
+          return (
+            <a
+              href={c.href}
+              class={`group block card card-interactive p-8 ${streamClass} relative overflow-hidden`}
+              style={`border: 2px solid ${streamColor}20; border-left: 4px solid ${streamColor};`}
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <span class={`stream-indicator ${indicatorClass}`}></span>
+                <div class="text-xs uppercase tracking-wide font-bold" style={`color: ${streamColor};`}>
+                  {c.age}
+                </div>
+              </div>
+              <div class="h3 mb-3">{c.title}</div>
+              <p class="text-black/75 leading-relaxed mb-6">{c.blurb}</p>
+              <div class="inline-flex items-center gap-2 text-sm font-semibold group-hover:underline underline-offset-4 transition-all duration-200" style={`color: ${streamColor}; text-decoration-color: ${streamColor};`}>
+                Explore {c.title} <span aria-hidden class="group-hover:translate-x-1 transition-transform duration-200">→</span>
+              </div>
+            </a>
+          );
+        })
       }
     </div>
   </div>

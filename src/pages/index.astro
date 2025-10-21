@@ -2,9 +2,11 @@
 import SiteLayout from "../layouts/Layout.astro";
 import Hero from "../components/home/Hero.astro";
 import Programmes from "../components/home/Programmes.astro";
+import WhatsHappening from "../components/home/WhatsHappening.astro";
+import WhyCreando from "../components/home/WhyCreando.astro";
 import Partners from "../components/home/Partners.astro";
 import ClosingCTA from "../components/home/ClosingCTA.astro";
-import WhatsHappening from "../components/home/WhatsHappening.astro";
+import UrgencyBanner from "../components/UrgencyBanner.svelte";
 import heroImage from "../assets/hero.png";
 
 import { getCollection } from "astro:content";
@@ -21,18 +23,29 @@ const events = (await getCollection("events"))
   );
 const openCalls = (await getCollection("open-calls")).map((o) => o.data);
 
+// Find active open call
+const activeOpenCall = openCalls.find(call => {
+  if (!call.openISO || !call.closeISO) return false;
+  const now = new Date();
+  const openDate = new Date(call.openISO);
+  const closeDate = new Date(call.closeISO);
+  return now >= openDate && now <= closeDate;
+}) || null;
+
 const headline = "Building futures from here, not elsewhere.";
 const sub =
   "Creando Futuronan is a practical school for design and digital culture in Aruba. We equip young people and artists with the tools to imagine, build, and sustain futures rooted in Caribbean realities.";
 ---
 
 <SiteLayout title="Creando Futuronan">
+  <UrgencyBanner openCall={activeOpenCall} client:load />
+  
   <Hero
     headline={headline}
     sub={sub}
     ctas={[
-      { label: "Join Creando Spark (12–18)", href: "/spark" },
-      { label: "Apply to Creando Sustain (18–28)", href: "/sustain" },
+      { label: "Join Creando Spark", href: "/spark" },
+      { label: "Apply to Creando Sustain", href: "/sustain" },
     ]}
     image={heroImage}
   />
@@ -40,8 +53,11 @@ const sub =
   <!-- Programmes -->
   <Programmes cards={programmes} />
 
-  <!-- What’s happening now (Open Call or Events) -->
-  <WhatsHappening openCall={openCalls} events={events} />
+  <!-- What's happening now (Open Call or Events) -->
+  <WhatsHappening openCall={activeOpenCall} events={events} />
+
+  <!-- Why Creando -->
+  <WhyCreando />
 
   <!-- Partners -->
   <Partners items={partnerCards} />

@@ -1,131 +1,59 @@
 ---
-import SiteLayout from "../layouts/Layout.astro";
-import Hero from "../components/home/Hero.astro";
-import heroImage from "../assets/hero.png";
+import ProgramLayout from "../layouts/ProgramLayout.astro";
 ---
 
-<SiteLayout
+<ProgramLayout
   title="Creando Spark — Creando Futuronan"
   description="A space for the restless ones. Where code, art, and AI collide."
->
-  <Hero
-    headline="Creando Spark (12–18)"
-    sub="A space for the restless ones. Where code, art, and AI crash into each other and something new sparks."
-    ctas={[
-      { label: "Apply / Register", href: "#apply" },
-      { label: "FAQs", href: "#faq" },
-    ]}
-    image={heroImage}
-  />
-
-  <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-    <div class="prose prose-sm sm:prose lg:prose-lg max-w-none">
-      <p>
-        <strong>No grades. No gurus.</strong> Just ideas, experiments, and the people
-        wild enough to try them.
-      </p>
-      <p>
-        Make weird things. Break boring things. Learn by doing — and unlearning.
-      </p>
-
-      <h2 class="h2 mt-10">About the programme</h2>
-      <p>
-        Join us for <strong>4 creative Saturday sessions</strong> where we’ll play
-        with coding, AI, communication networks, and digital design — no boring lectures,
-        no prior experience needed. We learn by asking questions, using our own culture
-        and experiences as the starting point, and working together as a community.
-      </p>
-      <ul>
-        <li>
-          <strong>Focus:</strong> creative coding, AI, digital culture, storytelling,
-          communication networks, design
-        </li>
-        <li><strong>Schedule:</strong> Saturdays — 8, 15, 22, 29 November</li>
-        <li><strong>Approach:</strong> experiment, collaborate, remix</li>
-      </ul>
-
-      <h3 class="h3 mt-10">Methodologies</h3>
-      <p>
-        <strong>Contextual Design:</strong> We start from what’s around us — our
-        stories, materials, surroundings.
-      </p>
-      <p>
-        <strong>Popular Education:</strong> Everyone’s a teacher, everyone’s a learner.
-        Curiosity is the curriculum.
-      </p>
-      <p>
-        <strong>Radical Data:</strong> Follow your sparks; prototype to test the
-        impossible.
-      </p>
-
-      <h3 class="h3 mt-10" id="team">Team</h3>
-      <p>
-        Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation,
-        Counter/Narratives & Afaina de Jong. See <a href="/about#partners"
-          >partners →</a
-        >
-      </p>
-
-      <h3 class="h3 mt-10">Location</h3>
-      <p>
-        <strong>RAA! (Residencia Artistico Aruba)</strong><br />Caya Betico
-        Croes 110, Oranjestad, Aruba
-      </p>
-
-      <h3 class="h3 mt-10">Language</h3>
-      <p>Sessions in English, with support in Papiamento and Spanish.</p>
-
-      <h3 class="h3 mt-10" id="info">Info sessions</h3>
-      <p>
-        If you want to join Spark, come to our <strong
-          >info sessions for parents and guardians</strong
-        > on <strong>Sat 11 Oct</strong> and <strong>Sat 18 Oct</strong> — <strong
-          >10:00–14:00</strong
-        > at <strong>RAA!</strong>
-      </p>
-      <p>
-        WhatsApp: <a
-          href="https://wa.me/2975689420"
-          target="_blank"
-          rel="noopener">+297 568 9420</a
-        >
-      </p>
-
-      <h3 class="h3 mt-10" id="apply">Apply / Register</h3>
-      <p>Ready to join? Tap the button below.</p>
-      <p>
-        <a
-          href="#apply"
-          class="btn-primary btn-md"
-          style="background: var(--color-accent);">Apply to Spark</a
-        >
-        <a href="#faq" class="btn-outline btn-md ml-2">Read FAQs</a>
-      </p>
-
-      <h3 class="h3 mt-10" id="apply" href="#apply">Apply / Register</h3>
-      <p>
-        Interested in joining? Write on WhatsApp to: <a
-          href="https://wa.me/2975689420"
-          target="_blank"
-          rel="noopener">+297 568 9420</a
-        >
-      </p>
-
-      <h3 class="h3 mt-10" id="faq">FAQs</h3>
-      <p>
-        <strong>Who can join?</strong> Young people aged 12–18, based in Aruba.
-      </p>
-      <p><strong>Do I need prior experience?</strong> Nope — just curiosity.</p>
-      <p>
-        <strong>Is there a cost?</strong> Participation is free; materials provided.
-      </p>
-      <p>
-        <strong>Where are sessions held?</strong> All sessions happen at RAA! in
-        Oranjestad.
-      </p>
-      <p>
-        <strong>How do I apply?</strong> Message us on WhatsApp to start the process.
-      </p>
-    </div>
-  </section>
-</SiteLayout>
+  headline="Creando Spark"
+  sub="A space for the restless ones. Where code, art, and AI crash into each other and something new sparks."
+  ageRange="12–18"
+  ctas={[
+    { label: "Join Spark", href: "https://wa.me/2975689420" },
+    { label: "Read FAQs", href: "#faq" },
+  ]}
+  programColor="var(--color-spark)"
+  streamClass="stream-spark"
+  aboutContent="No grades. No gurus. Just ideas, experiments, and the people wild enough to try them. Make weird things. Break boring things. Learn by doing — and unlearning."
+  schedule="Join us for 3 creative Saturday sessions where we'll play with coding, AI, communication networks, and digital design — no boring lectures, no prior experience needed. We learn by asking questions, using our own culture and experiences as the starting point, and working together as a community."
+  methodologies={[
+    {
+      title: "Contextual Design",
+      description: "We start from what's around us — our stories, materials, surroundings."
+    },
+    {
+      title: "Popular Education", 
+      description: "Everyone's a teacher, everyone's a learner. Curiosity is the curriculum."
+    },
+    {
+      title: "Radical Data",
+      description: "Follow your sparks; prototype to test the impossible."
+    }
+  ]}
+  team="Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. See partners →"
+  location="RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba"
+  language="Sessions in English, with support in Papiamento and Spanish."
+  applicationInfo="Ready to join? Message us on WhatsApp to start the process. We'll guide you through joining and answer any questions you have."
+  faqs={[
+    {
+      question: "Who can join?",
+      answer: "Young people aged 12–18, based in Aruba."
+    },
+    {
+      question: "Do I need prior experience?",
+      answer: "Nope — just curiosity."
+    },
+    {
+      question: "Is there a cost?",
+      answer: "Participation is free; materials provided."
+    },
+    {
+      question: "Where are sessions held?",
+      answer: "All sessions happen at RAA! in Oranjestad."
+    },
+    {
+      question: "How do I join?",
+      answer: "Message us on WhatsApp to start the process."
+    }
+  ]}
+/>
