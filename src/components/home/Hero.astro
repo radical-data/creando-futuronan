@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import defaultHero from "../../assets/hero.png";
+import MuxVideoPlayer from "../MuxVideoPlayer.svelte";
 
 interface Props {
   headline: string;
@@ -8,6 +9,7 @@ interface Props {
   ctas: { label: string; href: string; external?: boolean }[]; // required now
   image?: ImageMetadata;
   video?: string; // Path to video file
+  muxPlaybackId?: string; // Mux playback ID for streaming video
   alt?: string;
   ageRange?: string;
   programColor?: string;
@@ -20,6 +22,7 @@ const {
   ctas,
   image = defaultHero,
   video,
+  muxPlaybackId,
   alt = "Stylised of two trees and a computer.",
   ageRange,
   programColor,
@@ -84,7 +87,33 @@ if (!ctas || ctas.length === 0) {
     </div>
 
     <div class="lg:justify-self-end">
-      {video ? (
+      {muxPlaybackId ? (
+        <div class="relative w-full aspect-[9/16] sm:aspect-[16/10] rounded-3xl border border-[--color-brand]/30 overflow-hidden">
+          <MuxVideoPlayer 
+            playbackId={muxPlaybackId}
+            poster={image.src}
+            autoplay={true}
+            muted={true}
+            loop={true}
+            playsinline={true}
+            className="w-full h-full object-cover"
+            client:load
+          >
+            <svelte:fragment slot="fallback">
+              <Image
+                src={image}
+                alt={alt}
+                widths={[640, 960, 1280, 1600, 1920, 2560]}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                format="webp"
+                loading="eager"
+                fetchpriority="high"
+                class="w-full h-full object-cover"
+              />
+            </svelte:fragment>
+          </MuxVideoPlayer>
+        </div>
+      ) : video ? (
         <div class="relative w-full aspect-[9/16] sm:aspect-[16/10] rounded-3xl border border-[--color-brand]/30 overflow-hidden">
           <video
             src={video}

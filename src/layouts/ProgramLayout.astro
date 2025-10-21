@@ -13,6 +13,7 @@ interface Props {
   ctas: { label: string; href: string }[];
   programColor: string;
   streamClass: string;
+  muxPlaybackId?: string;
   aboutContent: string;
   schedule: string;
   methodologies: Array<{
@@ -39,6 +40,7 @@ const {
   ctas,
   programColor,
   streamClass,
+  muxPlaybackId,
   aboutContent,
   schedule,
   methodologies,
@@ -57,6 +59,7 @@ const {
     sub={sub}
     ctas={ctas}
     image={heroImage}
+    muxPlaybackId={muxPlaybackId}
     ageRange={ageRange}
     programColor={programColor}
     streamClass={streamClass}
