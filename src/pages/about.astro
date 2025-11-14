@@ -1,5 +1,12 @@
 ---
 import SiteLayout from "../layouts/Layout.astro";
+import { normaliseLocale } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+const lang: Lang = normaliseLocale(Astro.currentLocale);
+
+// TODO: Migrate About page content to Decap CMS pages collection
+// Currently using hardcoded English content; will be replaced with locale-aware content from Decap
 ---
 
 <SiteLayout
