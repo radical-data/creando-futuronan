@@ -1,14 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   
-  export let playbackId: string;
-  export let poster: string = '';
-  export let autoplay: boolean = true;
-  export let muted: boolean = true;
-  export let loop: boolean = true;
-  export let playsinline: boolean = true;
-  export let className: string = '';
-  export let lang: 'pap' | 'en' | 'nl' = 'pap';
+  let {
+    playbackId,
+    poster = '',
+    autoplay = true,
+    muted = true,
+    loop = true,
+    playsinline = true,
+    className = '',
+    lang = 'pap' as 'pap' | 'en' | 'nl',
+  } = $props();
   
   const labels = {
     pap: { unavailable: "Video no ta disponibel" },
