@@ -1,0 +1,209 @@
+backend:
+  # Production: Netlify Identity + Git Gateway
+  name: git-gateway
+  branch: main
+  # Optional: nicer commit messages
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Upload "{{path}}"'
+    deleteMedia: 'Delete "{{path}}"'
+    openAuthoring: '{{message}}'
+
+# Local dev: use decap-server + your local git repo
+local_backend: true
+
+# Where uploads go in the repo (you already created this)
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Use editorial workflow (Draft → In review → Published)
+publish_mode: editorial_workflow
+
+# Useful for preview links etc.
+site_url: "https://creandofuturonan.org"
+display_url: "https://creandofuturonan.org"
+
+# Nice to have
+logo:
+  src: "/logos/creando-horizontal.svg"
+  show_in_header: true
+
+locale: "en"
+show_preview_links: true
+
+# Make slugs predictable + safe
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # -------------------------
+  # EVENTS
+  # -------------------------
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    description: "Workshops, intro sessions, and other public activities."
+    folder: "src/content/events"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # When editor clicks "Preview", open the /events page
+    preview_path: "events"
+    # How entries appear in the list view sidebar
+    summary: "{{title}} — {{island}} — {{dateISO}}"
+    # Sorting options in the UI
+    sortable_fields: ["title", "dateISO", "island", "programme", "commit_date"]
+    # Handy views for editors
+    view_filters:
+      - label: "Spark events"
+        field: "programme"
+        pattern: "spark"
+      - label: "Sustain events"
+        field: "programme"
+        pattern: "sustain"
+      - label: "Online events"
+        field: "island"
+        pattern: "Online"
+    # JSON data → preview pane is not helpful
+    editor:
+      preview: false
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - name: "island"
+        label: "Island"
+        widget: "select"
+        options:
+          - { label: "Aruba", value: "Aruba" }
+          - { label: "Bonaire", value: "Bonaire" }
+          - { label: "Curaçao", value: "Curaçao" }
+          - { label: "Online", value: "Online" }
+        hint: "Where the event happens (or Online)."
+      - name: "dateISO"
+        label: "Date & time"
+        widget: "datetime"
+        hint: "Event date & time. Timezone is kept as you enter it."
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+      - { name: "href", label: "Link (More info / signup)", widget: "string" }
+      - name: "programme"
+        label: "Programme"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Spark", value: "spark" }
+          - { label: "Sustain", value: "sustain" }
+        hint: "Leave empty for general events."
+      - name: "type"
+        label: "Event Type"
+        widget: "string"
+        required: false
+        hint: "e.g., workshop, info session, talk, etc."
+      - name: "facilitators"
+        label: "Facilitators"
+        widget: "string"
+        required: false
+        hint: "Names of facilitators (comma-separated)."
+
+  # -------------------------
+  # PROGRAMMES
+  # -------------------------
+  - name: "programmes"
+    label: "Programmes"
+    label_singular: "Programme"
+    description: "High-level Spark / Sustain info cards used on the homepage."
+    folder: "src/content/programmes"
+    create: false
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    # Preview the actual programme page
+    # (href is something like /spark or /sustain)
+    preview_path: "{{href}}"
+    summary: "{{title}} — {{age}}"
+    editor:
+      preview: false
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "age", label: "Age range label", widget: "string", hint: "e.g., Ages 12–18" }
+      - { name: "blurb", label: "Blurb", widget: "text" }
+      - { name: "href", label: "Programme page URL", widget: "string", hint: "Usually /spark or /sustain" }
+
+  # -------------------------
+  # OPEN CALLS
+  # -------------------------
+  - name: "open-calls"
+    label: "Open Calls"
+    label_singular: "Open Call"
+    description: "Application windows that show on the homepage banner."
+    folder: "src/content/open-calls"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    extension: "json"
+    format: "json"
+    # Open calls show on the homepage + urgency banner
+    preview_path: "/"
+    summary: "{{programme}} — {{title}} ({{openISO}} → {{closeISO}})"
+    sortable_fields: ["programme", "openISO", "closeISO", "commit_date"]
+    editor:
+      preview: false
+    fields:
+      - name: "programme"
+        label: "Programme"
+        widget: "select"
+        options:
+          - { label: "Spark", value: "spark" }
+          - { label: "Sustain", value: "sustain" }
+      - { name: "title", label: "Title", widget: "string" }
+      - name: "openISO"
+        label: "Opens at"
+        widget: "datetime"
+        required: false
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+        hint: "When applications open."
+      - name: "closeISO"
+        label: "Closes at"
+        widget: "datetime"
+        required: false
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+        hint: "When applications close."
+      - { name: "applyLink", label: "Apply link (WhatsApp / form)", widget: "string" }
+
+  # -------------------------
+  # PARTNERS
+  # -------------------------
+  - name: "partners"
+    label: "Partners"
+    label_singular: "Partner"
+    description: "Organisations & collaborators shown on the homepage and About page."
+    folder: "src/content/partners"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    identifier_field: "name"
+    # Partners are highlighted on /about#partners
+    preview_path: "about#partners"
+    summary: "{{name}}"
+    editor:
+      preview: false
+    fields:
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "href", label: "Website (optional)", widget: "string", required: false }
+      - name: "logo"
+        label: "Logo image path"
+        widget: "string"
+        required: true
+        default: "./logo.png"
+        hint: "Relative to src/content/partners (e.g., ./partner-name.png). Logo image must be added via Git."
+      - { name: "blurb", label: "Blurb", widget: "text", required: false }
