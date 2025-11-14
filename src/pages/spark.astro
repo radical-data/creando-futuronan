@@ -1,67 +1,47 @@
 ---
 import ProgramLayout from "../layouts/ProgramLayout.astro";
-import { normaliseLocale } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import { normaliseLocale, useTranslations } from "../i18n/utils";
 import type { Lang } from "../i18n/ui";
 
 const lang: Lang = normaliseLocale(Astro.currentLocale);
+const t = useTranslations(lang);
 
-// TODO: Migrate Spark programme content to Decap CMS programme-pages collection
-// Currently using hardcoded English content; will be replaced with locale-aware content from Decap
+function entryMatchesLocale(entryId: string, lang: Lang) {
+  return entryId.startsWith(`${lang}/`);
+}
+
+// Load programme page content from collection
+const programmePages = await getCollection("programme-pages");
+const sparkPage = programmePages
+  .find((page) => entryMatchesLocale(page.id, lang) && page.data.slug === "spark");
+
+if (!sparkPage) {
+  throw new Error(`Spark programme page not found for locale: ${lang}`);
+}
+
+const pageData = sparkPage.data;
 ---
 
 <ProgramLayout
   title="Creando Spark — Creando Futuronan"
   description="A space for the restless ones. Where code, art, and AI collide."
-  headline="Creando Spark"
-  sub="A space for the restless ones. Where code, art, and AI crash into each other and something new sparks."
+  headline={pageData.headline}
+  sub={pageData.sub}
   ageRange="12–18"
   ctas={[
-    { label: "Join Spark", href: "https://wa.me/2975689420" },
-    { label: "Read FAQs", href: "#faq" },
+    { label: t("programme.joinSpark"), href: "https://wa.me/2975689420" },
+    { label: t("programme.readFaqs"), href: "#faq" },
   ]}
   programColor="var(--color-spark)"
   streamClass="stream-spark"
   muxPlaybackId="YLfcW2F42va7BITgERvMsUZr02DQOhin8qDse34WQAX00"
-  aboutContent="No grades. No gurus. Just ideas, experiments, and the people wild enough to try them. Make weird things. Break boring things. Learn by doing — and unlearning."
-  schedule="Join us for 3 creative Saturday sessions where we'll play with coding, AI, communication networks, and digital design — no boring lectures, no prior experience needed. We learn by asking questions, using our own culture and experiences as the starting point, and working together as a community."
-  methodologies={[
-    {
-      title: "Contextual Design",
-      description: "We start from what's around us — our stories, materials, surroundings."
-    },
-    {
-      title: "Popular Education", 
-      description: "Everyone's a teacher, everyone's a learner. Curiosity is the curriculum."
-    },
-    {
-      title: "Radical Data",
-      description: "Follow your sparks; prototype to test the impossible."
-    }
-  ]}
-  team="Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. See partners →"
-  location="RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba"
-  language="Sessions in English, with support in Papiamento and Spanish."
-  applicationInfo="Ready to join? Message us on WhatsApp to start the process. We'll guide you through joining and answer any questions you have."
-  faqs={[
-    {
-      question: "Who can join?",
-      answer: "Young people aged 12–18, based in Aruba."
-    },
-    {
-      question: "Do I need prior experience?",
-      answer: "Nope — just curiosity."
-    },
-    {
-      question: "Is there a cost?",
-      answer: "Participation is free; materials provided."
-    },
-    {
-      question: "Where are sessions held?",
-      answer: "All sessions happen at RAA! in Oranjestad."
-    },
-    {
-      question: "How do I join?",
-      answer: "Message us on WhatsApp to start the process."
-    }
-  ]}
+  aboutContent={pageData.aboutContent}
+  schedule={pageData.schedule}
+  methodologies={pageData.methodologies}
+  team={pageData.team}
+  location={pageData.location}
+  language={pageData.language}
+  applicationInfo={pageData.applicationInfo}
+  faqs={pageData.faqs}
 />

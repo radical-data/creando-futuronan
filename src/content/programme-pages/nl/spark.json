@@ -1,0 +1,48 @@
+{
+  "slug": "spark",
+  "headline": "Creando Spark",
+  "sub": "Een ruimte voor de rustelozen. Waar code, kunst en AI op elkaar botsen en iets nieuws ontstaat.",
+  "aboutContent": "Geen cijfers. Geen goeroes. Alleen ideeën, experimenten en de mensen die wild genoeg zijn om ze te proberen. Maak rare dingen. Breek saaie dingen. Leer door te doen — en af te leren.",
+  "schedule": "Sluit je aan bij 3 creatieve zaterdagsessies waar we spelen met programmeren, AI, communicatienetwerken en digitaal ontwerp — geen saaie lezingen, geen eerdere ervaring nodig. We leren door vragen te stellen, onze eigen cultuur en ervaringen als uitgangspunt te gebruiken en samen te werken als gemeenschap.",
+  "methodologies": [
+    {
+      "title": "Contextueel Ontwerp",
+      "description": "We beginnen bij wat om ons heen is — onze verhalen, materialen, omgeving."
+    },
+    {
+      "title": "Populaire Educatie",
+      "description": "Iedereen is een leraar, iedereen is een leerling. Nieuwsgierigheid is het curriculum."
+    },
+    {
+      "title": "Radical Data",
+      "description": "Volg je vonken; prototype om het onmogelijke te testen."
+    }
+  ],
+  "team": "Mede-georganiseerd door Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. Zie partners →",
+  "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
+  "language": "Sessies in het Engels, met ondersteuning in Papiamento en Spaans.",
+  "applicationInfo": "Klaar om mee te doen? Stuur ons een bericht via WhatsApp om het proces te starten. We begeleiden je bij het deelnemen en beantwoorden al je vragen.",
+  "faqs": [
+    {
+      "question": "Wie kan deelnemen?",
+      "answer": "Jongeren van 12–18 jaar, gevestigd op Aruba."
+    },
+    {
+      "question": "Heb ik eerdere ervaring nodig?",
+      "answer": "Nee — alleen nieuwsgierigheid."
+    },
+    {
+      "question": "Kost het iets?",
+      "answer": "Deelname is gratis; materialen worden verstrekt."
+    },
+    {
+      "question": "Waar vinden de sessies plaats?",
+      "answer": "Alle sessies vinden plaats bij RAA! in Oranjestad."
+    },
+    {
+      "question": "Hoe kan ik deelnemen?",
+      "answer": "Stuur ons een bericht via WhatsApp om het proces te starten."
+    }
+  ]
+}
+

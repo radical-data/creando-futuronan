@@ -1,0 +1,48 @@
+{
+  "slug": "spark",
+  "headline": "Creando Spark",
+  "sub": "A space for the restless ones. Where code, art, and AI crash into each other and something new sparks.",
+  "aboutContent": "No grades. No gurus. Just ideas, experiments, and the people wild enough to try them. Make weird things. Break boring things. Learn by doing — and unlearning.",
+  "schedule": "Join us for 3 creative Saturday sessions where we'll play with coding, AI, communication networks, and digital design — no boring lectures, no prior experience needed. We learn by asking questions, using our own culture and experiences as the starting point, and working together as a community.",
+  "methodologies": [
+    {
+      "title": "Contextual Design",
+      "description": "We start from what's around us — our stories, materials, surroundings."
+    },
+    {
+      "title": "Popular Education",
+      "description": "Everyone's a teacher, everyone's a learner. Curiosity is the curriculum."
+    },
+    {
+      "title": "Radical Data",
+      "description": "Follow your sparks; prototype to test the impossible."
+    }
+  ],
+  "team": "Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. See partners →",
+  "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
+  "language": "Sessions in English, with support in Papiamento and Spanish.",
+  "applicationInfo": "Ready to join? Message us on WhatsApp to start the process. We'll guide you through joining and answer any questions you have.",
+  "faqs": [
+    {
+      "question": "Who can join?",
+      "answer": "Young people aged 12–18, based in Aruba."
+    },
+    {
+      "question": "Do I need prior experience?",
+      "answer": "Nope — just curiosity."
+    },
+    {
+      "question": "Is there a cost?",
+      "answer": "Participation is free; materials provided."
+    },
+    {
+      "question": "Where are sessions held?",
+      "answer": "All sessions happen at RAA! in Oranjestad."
+    },
+    {
+      "question": "How do I join?",
+      "answer": "Message us on WhatsApp to start the process."
+    }
+  ]
+}
+

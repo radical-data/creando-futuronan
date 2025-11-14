@@ -21,6 +21,7 @@ const partners = defineCollection({
       href: z.string().optional(),
       logo: image(),
       blurb: z.string().optional(),
+      description: z.string().optional(),
     }),
 });
 
@@ -77,6 +78,8 @@ const pages = defineCollection({
   type: "data",
   schema: z.object({
     slug: z.string(),
+    title: z.string(),
+    badgeText: z.string(),
     missionQuote: z.string(),
     ourStory: z.object({
       heading: z.string(),
@@ -86,6 +89,7 @@ const pages = defineCollection({
       heading: z.string(),
       content: z.string(),
     }),
+    financingText: z.string(),
   }),
 });
 
