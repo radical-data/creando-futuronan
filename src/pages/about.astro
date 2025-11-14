@@ -1,12 +1,31 @@
 ---
 import SiteLayout from "../layouts/Layout.astro";
-import { normaliseLocale } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import { normaliseLocale, useTranslations } from "../i18n/utils";
 import type { Lang } from "../i18n/ui";
 
 const lang: Lang = normaliseLocale(Astro.currentLocale);
+const t = useTranslations(lang);
 
-// TODO: Migrate About page content to Decap CMS pages collection
-// Currently using hardcoded English content; will be replaced with locale-aware content from Decap
+function entryMatchesLocale(entryId: string, lang: Lang) {
+  return entryId.startsWith(`${lang}/`);
+}
+
+// Load about page content from collection
+const pages = await getCollection("pages");
+const aboutPage = pages
+  .find((page) => entryMatchesLocale(page.id, lang) && page.data.slug === "about");
+
+if (!aboutPage) {
+  throw new Error(`About page not found for locale: ${lang}`);
+}
+
+const pageData = aboutPage.data;
+
+// Load partners from collection
+const partnerCards = (await getCollection("partners"))
+  .filter((p) => entryMatchesLocale(p.id, lang))
+  .map((p) => p.data);
 ---
 
 <SiteLayout
@@ -16,10 +35,10 @@ const lang: Lang = normaliseLocale(Astro.currentLocale);
   <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-12">
-        <h1 class="h1">About Creando</h1>
+        <h1 class="h1">{pageData.title}</h1>
         <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[--color-lime]/20">
           <span class="w-2 h-2 rounded-full bg-[--color-lime]"></span>
-          <span class="text-sm font-medium text-black/80">Built from the ground up in Aruba</span>
+          <span class="text-sm font-medium text-black/80">{pageData.badgeText}</span>
         </div>
       </div>
       
@@ -27,91 +46,41 @@ const lang: Lang = normaliseLocale(Astro.currentLocale);
         <!-- Mission Statement -->
         <div class="not-prose mb-12 p-8 bg-gradient-to-br from-[--color-spark]/5 to-[--color-sustain]/5 rounded-3xl border border-black/10">
           <blockquote class="text-xl font-medium text-center italic">
-            "We believe education should grow from the realities, needs, and dreams of the people who live here, not from imported models."
+            "{pageData.missionQuote}"
           </blockquote>
         </div>
         
         <div class="grid gap-8 md:grid-cols-2 mb-12">
           <div>
-            <h2 class="h2 mb-4">Our Story</h2>
-            <p>
-              Creando was created through collaboration between artists, organisers,
-              and collectives who have lived the gap in access to design and digital
-              culture education in Aruba. Many had to leave for the Netherlands to
-              study and sustain their practice.
-            </p>
-            <p>
-              These shared experiences brought us together to connect existing efforts 
-              on the island and build something new from within.
-            </p>
+            <h2 class="h2 mb-4">{pageData.ourStory.heading}</h2>
+            {pageData.ourStory.content.split('\n\n').map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
           </div>
           
           <div>
-            <h2 class="h2 mb-4">Our Approach</h2>
-            <p>
-              Our approach is hands-on and collaborative: learning by doing,
-              experimenting, and building together. We connect creative practice with
-              local culture, sustainability, and the Caribbean's unique way of seeing
-              and making.
-            </p>
-            <p>
-              Creando is part school, part laboratory, and part community space — a
-              place where young people can develop the skills, confidence, and
-              networks to imagine and build the futures they want, right here in the
-              Caribbean.
-            </p>
+            <h2 class="h2 mb-4">{pageData.ourApproach.heading}</h2>
+            {pageData.ourApproach.content.split('\n\n').map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
           </div>
         </div>
 
-        <h2 class="h2 mt-12" id="partners">Creando is a collaborative work by</h2>
+        <h2 class="h2 mt-12" id="partners">{t("about.partners")}</h2>
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-8">
-          <div class="p-6 rounded-2xl border border-black/10 bg-white hover:shadow-lg transition-shadow">
-            <h3 class="h3 mb-3">Radical Data</h3>
-            <p class="text-sm text-black/75">
-              A collective that creates technology for liberation and joy. Bringing practices from data science, socially engaged art, and Latin American activism, they build community-based projects that redefine the role of technology in our present and future.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-black/10 bg-white hover:shadow-lg transition-shadow">
-            <h3 class="h3 mb-3">Counter/Narratives (C/N)</h3>
-            <p class="text-sm text-black/75">
-              An online and offline collaborative multimedia platform that brings together artists, researchers, community organisers, and cultural practitioners to challenge dominant historical and cultural narratives within the Caribbean.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-black/10 bg-white hover:shadow-lg transition-shadow">
-            <h3 class="h3 mb-3">Metabolic</h3>
-            <p class="text-sm text-black/75">
-              A systems change agency striving to transition the global economy to a fundamentally sustainable state where people and nature thrive. They guide decision-makers and implement real-world projects that bring ambitious ideas to life.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-black/10 bg-white hover:shadow-lg transition-shadow">
-            <h3 class="h3 mb-3">Brenchie's Lab</h3>
-            <p class="text-sm text-black/75">
-              A public access maker space started by Metabolic Foundation in 2016. The space offers access to digital fabrication tools such as 3D printers, CNC and laser cutters and a variety of programmable boards and sensors.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-black/10 bg-white hover:shadow-lg transition-shadow">
-            <h3 class="h3 mb-3">Afaina de Jong</h3>
-            <p class="text-sm text-black/75">
-              Founder of <a href="https://www.afarai.com/" target="_blank" rel="noopener" class="underline hover:no-underline">AFARAI</a>, an Amsterdam-based studio that challenges the boundaries of traditional architecture. She is Head MA Contextual Design at Design Academy Eindhoven.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-black/10 bg-white hover:shadow-lg transition-shadow">
-            <h3 class="h3 mb-3">Plataforma Aruba</h3>
-            <p class="text-sm text-black/75">
-              A non-profit organisation that develops activities and projects for the Aruban community, combining visual contemporary art and education. Founded in 2019 by art historian and cultural manager Ana Maria Hernández.
-            </p>
-          </div>
+          {partnerCards.map((partner) => (
+            <div class="p-6 rounded-2xl border border-black/10 bg-white hover:shadow-lg transition-shadow">
+              <h3 class="h3 mb-3">{partner.name}</h3>
+              {partner.description && (
+                <p class="text-sm text-black/75" set:html={partner.description}></p>
+              )}
+            </div>
+          ))}
         </div>
 
       <p class="mt-8 text-sm text-black/70">
-        Project financed by Stimuleringsfonds 2025 — Platforms for Design
-        Learning.
+        {pageData.financingText}
       </p>
     </div>
   </section>
