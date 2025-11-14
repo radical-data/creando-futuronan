@@ -28,9 +28,10 @@ This site uses [Decap CMS](https://decapcms.org/) for managing structured conten
 
 - **Admin route**: `/admin` (served by `src/pages/admin.html`)
 - **Config**: `public/admin/config.yml`
-- **Backend**: GitHub, commits to `main` branch
+- **Backend**: Netlify Identity + Git Gateway (production), local backend (development)
+- **Branch**: Commits to `main` branch
 
-**Production**: Visit `/admin`, log in with GitHub. Requires OAuth setup (Decap Cloud, Netlify Identity, or custom OAuth server).
+**Production**: Visit `/admin`, log in with Netlify Identity. Requires Netlify Identity and Git Gateway to be enabled in Netlify dashboard.
 
 **Local Development**:
 ```bash
