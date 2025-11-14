@@ -27,6 +27,12 @@ auth:
 # Local dev: use decap-server + your local git repo
 local_backend: true
 
+# i18n configuration
+i18n:
+  structure: multiple_folders
+  locales: [pap, en, nl]
+  default_locale: pap
+
 # Where uploads go in the repo (you already created this)
 media_folder: "public/uploads"
 public_folder: "/uploads"
@@ -67,6 +73,7 @@ collections:
     create: true
     extension: "json"
     format: "json"
+    i18n: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     # When editor clicks "Preview", open the /events page
     preview_path: "events"
@@ -89,10 +96,11 @@ collections:
     editor:
       preview: false
     fields:
-      - { name: "title", label: "Title", widget: "string" }
+      - { name: "title", label: "Title", widget: "string", i18n: true }
       - name: "island"
         label: "Island"
         widget: "select"
+        i18n: duplicate
         options:
           - { label: "Aruba", value: "Aruba" }
           - { label: "Bonaire", value: "Bonaire" }
@@ -102,15 +110,17 @@ collections:
       - name: "dateISO"
         label: "Date & time"
         widget: "datetime"
+        i18n: duplicate
         hint: "Event date & time. Timezone is kept as you enter it."
         date_format: "YYYY-MM-DD"
         time_format: "HH:mm:ss"
         picker_utc: false
-      - { name: "href", label: "Link (More info / signup)", widget: "string" }
+      - { name: "href", label: "Link (More info / signup)", widget: "string", i18n: true }
       - name: "programme"
         label: "Programme"
         widget: "select"
         required: false
+        i18n: duplicate
         options:
           - { label: "Spark", value: "spark" }
           - { label: "Sustain", value: "sustain" }
@@ -119,11 +129,13 @@ collections:
         label: "Event Type"
         widget: "string"
         required: false
+        i18n: true
         hint: "e.g., workshop, info session, talk, etc."
       - name: "facilitators"
         label: "Facilitators"
         widget: "string"
         required: false
+        i18n: true
         hint: "Names of facilitators (comma-separated)."
 
   # -------------------------
@@ -138,6 +150,7 @@ collections:
     slug: "{{slug}}"
     extension: "json"
     format: "json"
+    i18n: true
     identifier_field: "title"
     # Preview the actual programme page
     # (href is something like /spark or /sustain)
@@ -146,10 +159,10 @@ collections:
     editor:
       preview: false
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "age", label: "Age range label", widget: "string", hint: "e.g., Ages 12–18" }
-      - { name: "blurb", label: "Blurb", widget: "text" }
-      - { name: "href", label: "Programme page URL", widget: "string", hint: "Usually /spark or /sustain" }
+      - { name: "title", label: "Title", widget: "string", i18n: true }
+      - { name: "age", label: "Age range label", widget: "string", hint: "e.g., Ages 12–18", i18n: true }
+      - { name: "blurb", label: "Blurb", widget: "text", i18n: true }
+      - { name: "href", label: "Programme page URL", widget: "string", hint: "Usually /spark or /sustain", i18n: duplicate }
 
   # -------------------------
   # OPEN CALLS
@@ -163,6 +176,7 @@ collections:
     slug: "{{year}}-{{slug}}"
     extension: "json"
     format: "json"
+    i18n: true
     # Open calls show on the homepage + urgency banner
     preview_path: "/"
     summary: "{{programme}} — {{title}} ({{openISO}} → {{closeISO}})"
@@ -173,14 +187,16 @@ collections:
       - name: "programme"
         label: "Programme"
         widget: "select"
+        i18n: duplicate
         options:
           - { label: "Spark", value: "spark" }
           - { label: "Sustain", value: "sustain" }
-      - { name: "title", label: "Title", widget: "string" }
+      - { name: "title", label: "Title", widget: "string", i18n: true }
       - name: "openISO"
         label: "Opens at"
         widget: "datetime"
         required: false
+        i18n: duplicate
         date_format: "YYYY-MM-DD"
         time_format: "HH:mm:ss"
         picker_utc: false
@@ -189,11 +205,12 @@ collections:
         label: "Closes at"
         widget: "datetime"
         required: false
+        i18n: duplicate
         date_format: "YYYY-MM-DD"
         time_format: "HH:mm:ss"
         picker_utc: false
         hint: "When applications close."
-      - { name: "applyLink", label: "Apply link (WhatsApp / form)", widget: "string" }
+      - { name: "applyLink", label: "Apply link (WhatsApp / form)", widget: "string", i18n: true }
 
   # -------------------------
   # PARTNERS
@@ -207,6 +224,7 @@ collections:
     slug: "{{slug}}"
     extension: "json"
     format: "json"
+    i18n: true
     identifier_field: "name"
     # Partners are highlighted on /about#partners
     preview_path: "about#partners"
@@ -214,12 +232,89 @@ collections:
     editor:
       preview: false
     fields:
-      - { name: "name", label: "Name", widget: "string" }
-      - { name: "href", label: "Website (optional)", widget: "string", required: false }
+      - { name: "name", label: "Name", widget: "string", i18n: duplicate }
+      - { name: "href", label: "Website (optional)", widget: "string", required: false, i18n: duplicate }
       - name: "logo"
         label: "Logo image path"
         widget: "string"
         required: true
         default: "./logo.png"
+        i18n: duplicate
         hint: "Relative to src/content/partners (e.g., ./partner-name.png). Logo image must be added via Git."
-      - { name: "blurb", label: "Blurb", widget: "text", required: false }
+      - { name: "blurb", label: "Blurb", widget: "text", required: false, i18n: true }
+
+  # -------------------------
+  # PROGRAMME PAGES
+  # -------------------------
+  - name: "programme-pages"
+    label: "Programme Pages"
+    label_singular: "Programme Page"
+    description: "Full content for Spark and Sustain programme pages."
+    folder: "src/content/programme-pages"
+    create: false
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    i18n: true
+    identifier_field: "slug"
+    summary: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { name: "slug", label: "Slug", widget: "string", i18n: duplicate, hint: "Must be 'spark' or 'sustain'" }
+      - { name: "headline", label: "Headline", widget: "string", i18n: true }
+      - { name: "sub", label: "Subtitle", widget: "text", i18n: true }
+      - { name: "aboutContent", label: "About Content", widget: "text", i18n: true }
+      - { name: "schedule", label: "Schedule", widget: "text", i18n: true }
+      - name: "methodologies"
+        label: "Methodologies"
+        widget: "list"
+        i18n: true
+        fields:
+          - { name: "title", label: "Title", widget: "string" }
+          - { name: "description", label: "Description", widget: "text" }
+      - { name: "team", label: "Team", widget: "text", i18n: true }
+      - { name: "location", label: "Location", widget: "text", i18n: true }
+      - { name: "language", label: "Language Info", widget: "string", i18n: true }
+      - { name: "introSession", label: "Intro Session", widget: "text", required: false, i18n: true }
+      - { name: "applicationInfo", label: "Application Info", widget: "text", i18n: true }
+      - name: "faqs"
+        label: "FAQs"
+        widget: "list"
+        i18n: true
+        fields:
+          - { name: "question", label: "Question", widget: "string" }
+          - { name: "answer", label: "Answer", widget: "text" }
+
+  # -------------------------
+  # PAGES (Static)
+  # -------------------------
+  - name: "pages"
+    label: "Static Pages"
+    label_singular: "Page"
+    description: "Content for static pages like About."
+    folder: "src/content/pages"
+    create: false
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    i18n: true
+    identifier_field: "slug"
+    summary: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { name: "slug", label: "Slug", widget: "string", i18n: duplicate, hint: "e.g., 'about'" }
+      - { name: "missionQuote", label: "Mission Quote", widget: "text", i18n: true }
+      - name: "ourStory"
+        label: "Our Story Section"
+        widget: "object"
+        fields:
+          - { name: "heading", label: "Heading", widget: "string", i18n: true }
+          - { name: "content", label: "Content", widget: "markdown", i18n: true }
+      - name: "ourApproach"
+        label: "Our Approach Section"
+        widget: "object"
+        fields:
+          - { name: "heading", label: "Heading", widget: "string", i18n: true }
+          - { name: "content", label: "Content", widget: "markdown", i18n: true }
