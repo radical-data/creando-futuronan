@@ -1,5 +1,6 @@
 {
     "name": "Brenchie's Lab",
-    "logo": "./brenchies-lab.png",
-    "blurb": "Public access maker-space in Aruba."
+    "logo": "../brenchies-lab.png",
+    "blurb": "Maker-space di acceso publico na Aruba.",
+    "description": "Un maker-space di acceso publico cu a ser inicia pa Metabolic Foundation na 2016. E espacio ta ofrese acceso na herramientanan di fabricacion digital manera impresoranan 3D, CNC y laser cutters y un variedad di tablanan programable y sensornan."
 }

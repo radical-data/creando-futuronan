@@ -1,5 +1,6 @@
 {
     "name": "Radical Data",
-    "logo": "./radical-data.png",
-    "blurb": "Studio, educational platform & community repurposing tech for liberation + joy."
+    "logo": "../radical-data.png",
+    "blurb": "Studio, plataforma educativo y comunidad cu ta reutilisa tecnologia pa liberacion y alegria.",
+    "description": "Un colectivo cu ta crea tecnologia pa liberacion y alegria. Trahendo practicanan for di ciencia di dato, arte socialmente involucra, y activismo Latino Americano, nan ta construi proyectonan basá den comunidad cu ta redefini e rol di tecnologia den nos presente y futuro."
 }

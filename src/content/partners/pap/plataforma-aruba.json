@@ -1,5 +1,6 @@
 {
     "name": "Plataforma Aruba",
-    "logo": "./plataforma-aruba.png",
-    "blurb": "Arts organisation rooted in research, education, and community in Aruba."
+    "logo": "../plataforma-aruba.png",
+    "blurb": "Organisacion di arte cu ta basa den investigacion, educacion y comunidad na Aruba.",
+    "description": "Un organisacion sin fin di lucro cu ta desaroya actividadnan y proyectonan pa e comunidad Arubano, combinando arte visual contemporaneo y educacion. Fundá na 2019 pa historiadornan di arte y gerente cultural Ana Maria Hernández."
 }

@@ -1,5 +1,6 @@
 {
     "name": "Afaina de Jong",
-    "logo": "./afarai.png",
-    "blurb": "Architect and educator working at the intersection of spatial design, research and art."
+    "logo": "../afarai.png",
+    "blurb": "Arquitecto y educador trahando na e interseccion di diseño espacial, investigacion y arte.",
+    "description": "Fundador di <a href=\"https://www.afarai.com/\" target=\"_blank\" rel=\"noopener\" class=\"underline hover:no-underline\">AFARAI</a>, un studio basá na Amsterdam cu ta desafiá e limitnan di arquitectura tradicional. E ta Head MA Contextual Design na Design Academy Eindhoven."
 }
