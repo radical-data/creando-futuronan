@@ -3,6 +3,7 @@ import SiteLayout from "./Layout.astro";
 import Hero from "../components/home/Hero.astro";
 import Application from "../components/Application.astro";
 import heroImage from "../assets/hero.png";
+import { normaliseLocale, useTranslations } from "../i18n/utils";
 
 interface Props {
   title: string;
@@ -51,6 +52,9 @@ const {
   applicationInfo,
   faqs,
 } = Astro.props;
+
+const lang = normaliseLocale(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <SiteLayout title={title} description={description}>
@@ -72,12 +76,12 @@ const {
         {aboutContent}
       </div>
 
-      <h2 class="h2 mt-10">About the programme</h2>
+      <h2 class="h2 mt-10">{t("programme.about")}</h2>
       <p class="text-lg">
         {schedule}
       </p>
 
-      <h3 class="h3 mt-10">Methodologies</h3>
+      <h3 class="h3 mt-10">{t("programme.methodologies")}</h3>
       <div class="grid gap-6 md:grid-cols-3 mt-6">
         {methodologies.map((method) => (
           <div class={`p-6 rounded-2xl border ${streamClass}`} style={`border-color: var(--stream-color-medium); background-color: var(--stream-color-light);`}>
@@ -89,10 +93,10 @@ const {
         ))}
       </div>
 
-      <h3 class="h3 mt-10" id="team">Team</h3>
+      <h3 class="h3 mt-10" id="team">{t("programme.team")}</h3>
       <p>{team}</p>
 
-      <h3 class="h3 mt-10">Location</h3>
+      <h3 class="h3 mt-10">{t("programme.location")}</h3>
       <p class="mb-4">{location}</p>
       <div class="w-full h-64 rounded-lg overflow-hidden border border-gray-200 bg-gray-100 flex items-center justify-center">
         <div class="text-center">
@@ -112,12 +116,12 @@ const {
         </div>
       </div>
 
-      <h3 class="h3 mt-10">Language</h3>
+      <h3 class="h3 mt-10">{t("programme.language")}</h3>
       <p>{language}</p>
 
       {introSession && (
         <>
-          <h3 class="h3 mt-10" id="intro">Open intro session</h3>
+          <h3 class="h3 mt-10" id="intro">{t("programme.introSession")}</h3>
           <p set:html={introSession}></p>
           {headline.includes('Sustain') && (
             <div class="mt-6">
@@ -136,7 +140,7 @@ const {
         </>
       )}
 
-      <h3 class="h3 mt-10" id="apply">How to apply</h3>
+      <h3 class="h3 mt-10" id="apply">{t("programme.howToApply")}</h3>
       <p class="mb-6">{applicationInfo}</p>
       
       <!-- Enhanced Application Component -->
@@ -145,7 +149,7 @@ const {
         whatsappNumber="+297 568 9420"
       />
 
-      <h3 class="h3 mt-10" id="faq">FAQs</h3>
+      <h3 class="h3 mt-10" id="faq">{t("programme.faqs")}</h3>
       <div class="space-y-4">
         {faqs.map((faq) => (
           <details class="group">
