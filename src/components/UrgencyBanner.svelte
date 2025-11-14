@@ -1,5 +1,37 @@
 <script>
-  let { openCall } = $props();
+  let { openCall, lang = 'pap' } = $props();
+  
+  const labels = {
+    pap: {
+      expired: "Periodo di inskripshon a kaba",
+      critical: "Keda solamente {days} dia pa inskribí!",
+      urgent: "Inskripshon ta sera den {days} dia",
+      warning: "Inskripshon ta sera den {days} dia",
+      open: "Periodo di inskripshon habri",
+      applyNow: "Inskribí awor",
+      days: "dia",
+    },
+    en: {
+      expired: "Application period has ended",
+      critical: "Only {days} days left to apply!",
+      urgent: "Application closes in {days} days",
+      warning: "Application closes in {days} days",
+      open: "Application period open",
+      applyNow: "Apply Now",
+      days: "days",
+    },
+    nl: {
+      expired: "De aanmeldingsperiode is afgelopen",
+      critical: "Nog maar {days} dagen om je aan te melden!",
+      urgent: "Aanmelding sluit over {days} dagen",
+      warning: "Aanmelding sluit over {days} dagen",
+      open: "Aanmeldingsperiode open",
+      applyNow: "Meld je nu aan",
+      days: "dagen",
+    },
+  };
+  
+  const l = $derived(labels[lang] ?? labels.pap);
   
   let timeLeft = $state({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   let isExpired = $state(false);
@@ -43,11 +75,11 @@
   function getUrgencyMessage() {
     const level = getUrgencyLevel();
     switch (level) {
-      case 'expired': return 'Application period has ended';
-      case 'critical': return 'Only {timeLeft.days} days left to apply!';
-      case 'urgent': return 'Application closes in {timeLeft.days} days';
-      case 'warning': return 'Application closes in {timeLeft.days} days';
-      default: return 'Application period open';
+      case 'expired': return l.expired;
+      case 'critical': return l.critical;
+      case 'urgent': return l.urgent;
+      case 'warning': return l.warning;
+      default: return l.open;
     }
   }
 </script>
@@ -59,7 +91,7 @@
         <div class="flex items-center gap-3">
           <div class="w-2 h-2 rounded-full animate-pulse urgency-dot"></div>
           <div class="text-sm font-semibold">
-            {getUrgencyMessage().replace('{timeLeft.days}', timeLeft.days)}
+            {getUrgencyMessage().replace('{days}', timeLeft.days)}
           </div>
         </div>
         
@@ -68,7 +100,7 @@
             {#if timeLeft.days > 0}
               <div class="flex items-center gap-1">
                 <span class="font-bold text-lg">{timeLeft.days}</span>
-                <span>days</span>
+                <span>{l.days}</span>
               </div>
             {/if}
             <div class="flex items-center gap-1">
@@ -85,7 +117,7 @@
           href={openCall.applyLink || '/sustain#apply'}
           class="btn-primary btn-sm btn-cap font-bold urgency-cta"
         >
-          Apply Now
+          {l.applyNow}
         </a>
       </div>
     </div>

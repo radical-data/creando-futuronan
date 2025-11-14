@@ -1,5 +1,6 @@
 ---
 import EventsCalendar from './EventsCalendar.svelte';
+import type { Lang } from "../../i18n/ui";
 
 interface OpenCall {
   isOpen: boolean;
@@ -17,7 +18,7 @@ interface EventItem {
   endDateISO?: string;
 }
 
-const { openCall, events = [] }: { openCall?: OpenCall; events?: EventItem[] } =
+const { openCall, events = [], lang = "pap" }: { openCall?: OpenCall; events?: EventItem[]; lang?: Lang } =
   Astro.props;
 
 const tz = "America/Aruba"; // UTC−4 year-round
@@ -79,7 +80,7 @@ const fmt = (iso: string, locale = "en-AW") =>
           
           <!-- Calendar Component -->
           <div class="mt-6">
-            <EventsCalendar events={events} openCall={openCall} client:visible />
+            <EventsCalendar events={events} openCall={openCall} lang={lang} client:visible />
           </div>
           
         </>
