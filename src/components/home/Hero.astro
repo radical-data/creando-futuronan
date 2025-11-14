@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import defaultHero from "../../assets/hero.png";
 import MuxVideoPlayer from "../MuxVideoPlayer.svelte";
+import { normaliseLocale } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
 
 interface Props {
   headline: string;
@@ -28,6 +30,8 @@ const {
   programColor,
   streamClass,
 } = Astro.props;
+
+const lang: Lang = normaliseLocale(Astro.currentLocale);
 
 if (!ctas || ctas.length === 0) {
   throw new Error("Hero component requires a non-empty `ctas` array.");
@@ -97,6 +101,7 @@ if (!ctas || ctas.length === 0) {
             loop={true}
             playsinline={true}
             className="w-full h-full object-cover"
+            lang={lang}
             client:load
           >
             <svelte:fragment slot="fallback">

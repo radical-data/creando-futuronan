@@ -1,4 +1,7 @@
 ---
+import { normaliseLocale, useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+
 interface Card {
   title: string;
   age: string;
@@ -9,15 +12,18 @@ interface Props {
   cards: Card[];
 }
 const { cards } = Astro.props;
+
+const lang: Lang = normaliseLocale(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <section class="py-10 lg:py-16 border-t border-black/10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">
-      Programmes
+      {t("home.programmes")}
     </h2>
     <p class="mt-2 text-black/70 max-w-prose">
-      We run two programmes that move from first contact to long-term practice.
+      {t("home.programmesDesc")}
     </p>
     <div class="mt-10 grid gap-8 md:grid-cols-2">
       {
@@ -42,7 +48,7 @@ const { cards } = Astro.props;
               <div class="h3 mb-3">{c.title}</div>
               <p class="text-black/75 leading-relaxed mb-6">{c.blurb}</p>
               <div class="inline-flex items-center gap-2 text-sm font-semibold group-hover:underline underline-offset-4 transition-all duration-200" style={`color: ${streamColor}; text-decoration-color: ${streamColor};`}>
-                Explore {c.title} <span aria-hidden class="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                {t("home.explore").replace("{title}", c.title)} <span aria-hidden class="group-hover:translate-x-1 transition-transform duration-200">→</span>
               </div>
             </a>
           );

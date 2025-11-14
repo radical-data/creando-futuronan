@@ -10,6 +10,18 @@ import svelte from "@astrojs/svelte";
 // https://astro.build/config
 export default defineConfig({
   site: "https://creandofuturonan.org",
+
+  i18n: {
+    locales: ["pap", "en", "nl"],
+    defaultLocale: "pap",
+    fallback: {
+      en: "pap",
+      nl: "pap",
+    },
+    routing: {
+      prefixDefaultLocale: false, // root `/` is Papiamento
+    },
+  },
   
   vite: {
     plugins: [tailwindcss()],

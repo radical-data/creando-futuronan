@@ -1,9 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from "astro:content";
+import { normaliseLocale } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+const lang: Lang = normaliseLocale(Astro.currentLocale);
+
+function entryMatchesLocale(entryId: string, lang: Lang) {
+  return entryId.startsWith(`${lang}/`);
+}
 
 // Get events from content collections
 const events = (await getCollection("events"))
+  .filter((e) => entryMatchesLocale(e.id, lang))
   .map((e) => ({
     ...e.data,
     dateISO: e.data.dateISO.toISOString(),

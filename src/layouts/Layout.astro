@@ -4,6 +4,8 @@ import ogDefault from "../assets/og.png";
 import { ViewTransitions } from 'astro:transitions';
 import { Image } from "astro:assets";
 import creativeIndustriesLogo from "../../public/logos/creative-industries.svg";
+import { normaliseLocale, useTranslations } from "../i18n/utils";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 
 interface Props {
   title?: string;
@@ -14,10 +16,13 @@ const {
   title = "Creando Futuronan",
   description = "A practical school for design & digital culture in Aruba.",
 } = Astro.props;
+
+const lang = normaliseLocale(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -49,16 +54,20 @@ const {
           decoding="async"
         />
       </a>
-      <nav class="flex items-center gap-6 text-sm">
+      <nav class="flex items-center gap-6 text-sm" aria-label={t("nav.main")}>
         <a href="/spark" class="hover:underline focus-ring focus-ring-spark flex items-center gap-2">
           <span class="stream-indicator stream-indicator-spark"></span>
-          Spark
+          {t("nav.spark")}
         </a>
         <a href="/sustain" class="hover:underline focus-ring focus-ring-sustain flex items-center gap-2">
           <span class="stream-indicator stream-indicator-sustain"></span>
-          Sustain
+          {t("nav.sustain")}
         </a>
-        <a href="/about" class="hover:underline focus-ring">About</a>
+        <a href="/about" class="hover:underline focus-ring">
+          {t("nav.about")}
+        </a>
+
+        <LanguageSwitcher lang={lang} />
       </nav>
     </header>
 
@@ -80,13 +89,11 @@ const {
         <div>
           <div class="font-semibold">Creando Futuronan</div>
           <p class="text-black/70 mt-1">
-            Design & digital culture from the islands, for the islands.
+            {t("footer.tagline")}
           </p>
           <div class="mt-3">
             <p class="text-black/60 text-sm leading-snug mb-2">
-              Co-funded by <span class="font-medium"
-                >Creative Industries Fund NL</span
-              >.
+              {t("footer.cofunded")}
             </p>
             <a
               href="https://stimuleringsfonds.nl/"
@@ -108,21 +115,21 @@ const {
           </div>
         </div>
         <div class="space-y-2">
-          <div class="font-semibold">Programs</div>
+          <div class="font-semibold">{t("footer.programmes")}</div>
           <div class="flex flex-col gap-2">
             <a href="/spark" class="hover:underline focus-ring focus-ring-spark flex items-center gap-2">
               <span class="stream-indicator stream-indicator-spark"></span>
-              Spark
+              {t("nav.spark")}
             </a>
             <a href="/sustain" class="hover:underline focus-ring focus-ring-sustain flex items-center gap-2">
               <span class="stream-indicator stream-indicator-sustain"></span>
-              Sustain
+              {t("nav.sustain")}
             </a>
-            <a href="/about" class="hover:underline focus-ring">About</a>
+            <a href="/about" class="hover:underline focus-ring">{t("nav.about")}</a>
           </div>
         </div>
         <div class="space-y-2">
-          <div class="font-semibold">Connect</div>
+          <div class="font-semibold">{t("footer.connect")}</div>
           <a class="hover:underline focus-ring" href="mailto:hello@creandofuturonan.org"
             >hello@creandofuturonan.org</a
           >

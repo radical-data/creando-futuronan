@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { normaliseLocale, useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
 
 interface Partner {
   name: string;
@@ -10,11 +12,14 @@ interface Partner {
 }
 
 const { items = [] } = Astro.props as { items: Partner[] };
+
+const lang: Lang = normaliseLocale(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <section class="py-10 lg:py-14 border-t border-black/10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="h2">Partners</h2>
+    <h2 class="h2">{t("home.partners")}</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {
         items.map((p) => (
@@ -45,7 +50,7 @@ const { items = [] } = Astro.props as { items: Partner[] };
         href="/about#partners"
         class="text-sm font-medium underline hover:no-underline"
       >
-        Want to collaborate or support? → Get in touch
+        {t("home.partnersCTA")}
       </a>
     </div>
   </div>

@@ -1,5 +1,7 @@
 ---
 import EventsCalendar from './EventsCalendar.svelte';
+import { normaliseLocale, useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
 
 interface OpenCall {
   isOpen: boolean;
@@ -17,8 +19,11 @@ interface EventItem {
   endDateISO?: string;
 }
 
-const { openCall, events = [] }: { openCall?: OpenCall; events?: EventItem[] } =
+const { openCall, events = [], lang: langProp = "pap" }: { openCall?: OpenCall; events?: EventItem[]; lang?: Lang } =
   Astro.props;
+
+const lang: Lang = normaliseLocale(langProp);
+const t = useTranslations(lang);
 
 const tz = "America/Aruba"; // UTC−4 year-round
 const fmt = (iso: string, locale = "en-AW") =>
@@ -39,7 +44,7 @@ const fmt = (iso: string, locale = "en-AW") =>
           <div class="flex items-center gap-2 mb-3">
             <span class="stream-indicator stream-indicator-sustain"></span>
             <div class="text-xs uppercase tracking-wide font-bold" style="color: var(--color-sustain);">
-              Open call
+              {t("home.openCall")}
             </div>
           </div>
           <h2 class="h2 mb-3">
@@ -47,7 +52,7 @@ const fmt = (iso: string, locale = "en-AW") =>
           </h2>
           {openCall.deadlineISO && (
             <p class="text-black/75 mb-6">
-              Deadline: {fmt(openCall.deadlineISO)}
+              {t("home.deadline")} {fmt(openCall.deadlineISO)}
             </p>
           )}
           <div class="flex flex-wrap gap-3">
@@ -65,7 +70,7 @@ const fmt = (iso: string, locale = "en-AW") =>
               class="btn-outline btn-md btn-cap font-bold"
               style="border-color: var(--color-sustain); color: var(--color-sustain);"
             >
-              FAQs
+              {t("programme.faqs")}
             </a>
           </div>
         </div>
@@ -73,13 +78,13 @@ const fmt = (iso: string, locale = "en-AW") =>
         <>
           <div class="flex items-center justify-between">
             <h2 class="h2">
-              Upcoming workshops & events
+              {t("home.upcomingEvents")}
             </h2>
           </div>
           
           <!-- Calendar Component -->
           <div class="mt-6">
-            <EventsCalendar events={events} openCall={openCall} client:visible />
+            <EventsCalendar events={events} openCall={openCall} lang={lang} client:visible />
           </div>
           
         </>

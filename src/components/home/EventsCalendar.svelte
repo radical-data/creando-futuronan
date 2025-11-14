@@ -3,7 +3,44 @@
   import { Button } from '$lib/components/ui/button';
   import { getLocalTimeZone, today } from '@internationalized/date';
   
-  let { events = [], openCall = null } = $props();
+  import { localeForDates } from '../../i18n/dates';
+  
+  let { events = [], openCall = null, lang = 'pap' } = $props();
+  
+  const labels = {
+    pap: {
+      title: "Kalènder di evento",
+      calendar: "Kalènder",
+      list: "Lista",
+      allEvents: "Tur evento",
+      upcoming: "Evento ku ta bin",
+      noUpcoming: "No tin ningun evento planeá",
+      noEventsOnDate: "No tin evento riba e fecha akí",
+      eventsOn: "Evento riba",
+    },
+    en: {
+      title: "Events Calendar",
+      calendar: "Calendar",
+      list: "List",
+      allEvents: "All events",
+      upcoming: "Upcoming events",
+      noUpcoming: "No upcoming events scheduled",
+      noEventsOnDate: "No events on this date",
+      eventsOn: "Events on",
+    },
+    nl: {
+      title: "Evenementenkalender",
+      calendar: "Kalender",
+      list: "Lijst",
+      allEvents: "Alle evenementen",
+      upcoming: "Aankomende evenementen",
+      noUpcoming: "Geen aankomende evenementen gepland",
+      noEventsOnDate: "Geen evenementen op deze datum",
+      eventsOn: "Evenementen op",
+    },
+  };
+  
+  const l = $derived(labels[lang] ?? labels.pap);
   
   let selectedDate = $state(null);
   let placeholder = $state(today(getLocalTimeZone()));
@@ -50,7 +87,8 @@
   }
   
   function formatEventDate(dateISO) {
-    return new Date(dateISO).toLocaleDateString('en-AW', {
+    const localeStr = localeForDates(lang);
+    return new Date(dateISO).toLocaleDateString(localeStr, {
       timeZone: 'America/Aruba',
       day: '2-digit',
       month: 'short',
@@ -107,7 +145,7 @@
 <div class="calendar-container">
   <!-- View Toggle (Mobile Only) -->
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 lg:hidden">
-    <h3 class="text-lg font-semibold">Events Calendar</h3>
+    <h3 class="text-lg font-semibold">{l.title}</h3>
     <div class="flex gap-2">
         <Button 
           variant={viewMode === 'calendar' ? 'default' : 'outline'}
@@ -115,9 +153,9 @@
           onclick={() => viewMode = 'calendar'}
           class="flex-1 sm:flex-none"
           aria-pressed={viewMode === 'calendar'}
-          aria-label="Switch to calendar view"
+          aria-label={`Switch to ${l.calendar.toLowerCase()} view`}
         >
-          Calendar
+          {l.calendar}
         </Button>
         <Button 
           variant={viewMode === 'list' ? 'default' : 'outline'}
@@ -125,16 +163,16 @@
           onclick={() => viewMode = 'list'}
           class="flex-1 sm:flex-none"
           aria-pressed={viewMode === 'list'}
-          aria-label="Switch to list view"
+          aria-label={`Switch to ${l.list.toLowerCase()} view`}
         >
-          List
+          {l.list}
         </Button>
     </div>
   </div>
   
   <!-- Desktop Title -->
   <div class="hidden lg:block mb-6">
-    <h3 class="text-lg font-semibold">Events Calendar</h3>
+    <h3 class="text-lg font-semibold">{l.title}</h3>
   </div>
 
   <!-- Stream Filter -->
@@ -145,7 +183,7 @@
       onclick={() => streamFilter = 'all'}
       class="text-xs"
     >
-      All Events
+      {l.allEvents}
     </Button>
     <Button 
       variant={streamFilter === 'spark' ? 'default' : 'outline'} 
@@ -205,7 +243,7 @@
 
     <!-- List View -->
     <div class="list-view">
-      <h4 class="text-lg font-medium mb-4">Upcoming Events</h4>
+      <h4 class="text-lg font-medium mb-4">{l.upcoming}</h4>
       {#if getFilteredEvents().length > 0}
         <div class="space-y-3">
           {#each getFilteredEvents().slice(0, 5) as event}
@@ -222,7 +260,7 @@
         
       {:else}
         <div class="text-center py-8 text-gray-500">
-          <p>No upcoming events scheduled</p>
+          <p>{l.noUpcoming}</p>
         </div>
       {/if}
     </div>
@@ -267,7 +305,7 @@
         {#if selectedDate}
           <div class="mt-4 p-4 bg-gray-50 rounded-lg">
                 <h5 class="font-medium mb-2">
-                  Events on {formatDateValue(selectedDate)}
+                  {l.eventsOn} {formatDateValue(selectedDate)}
                 </h5>
             {#if getEventsForDate(selectedDate).length > 0}
               <div class="space-y-2">
@@ -282,7 +320,7 @@
                 {/each}
               </div>
             {:else}
-              <p class="text-gray-500 text-sm">No events on this date</p>
+              <p class="text-gray-500 text-sm">{l.noEventsOnDate}</p>
             {/if}
           </div>
         {/if}
@@ -290,7 +328,7 @@
     {:else}
       <!-- List View -->
       <div class="list-view">
-        <h4 class="text-lg font-medium mb-4">Upcoming Events</h4>
+        <h4 class="text-lg font-medium mb-4">{l.upcoming}</h4>
         {#if getFilteredEvents().length > 0}
           <div class="space-y-3">
             {#each getFilteredEvents() as event}
@@ -307,7 +345,7 @@
           
         {:else}
           <div class="text-center py-8 text-gray-500">
-            <p>No upcoming events scheduled</p>
+            <p>{l.noUpcoming}</p>
           </div>
         {/if}
       </div>
