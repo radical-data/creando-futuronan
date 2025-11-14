@@ -1,19 +1,27 @@
+---
+import { normaliseLocale, useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+
+const lang: Lang = normaliseLocale(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
 <section class="py-12 lg:py-16 border-t border-black/10">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <div class="h2">Ready to get involved?</div>
+    <div class="h2">{t("home.readyToGetInvolved")}</div>
     <p class="mt-2 text-black/70">
-      Choose your path — or partner with us to make it bigger.
+      {t("home.choosePath")}
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
       <a
         href="/spark"
         class="btn-primary btn-md sm:btn-lg btn-cap font-bold shadow-lg hover:shadow-xl"
-        style="background: #D6004A; border-color: #D6004A;">Join Creando Spark</a
+        style="background: #D6004A; border-color: #D6004A;">{t("home.joinSpark")}</a
       >
       <a
         href="/sustain"
         class="btn-outline btn-md sm:btn-lg btn-cap font-bold shadow-lg hover:shadow-xl"
-        style="border-color: var(--color-sustain); color: var(--color-sustain);">Apply to Creando Sustain</a
+        style="border-color: var(--color-sustain); color: var(--color-sustain);">{t("home.applySustain")}</a
       >
     </div>
   </div>

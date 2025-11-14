@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  
   let {
     playbackId,
     poster = '',
@@ -20,68 +18,108 @@
   
   const l = $derived(labels[lang] ?? labels.pap);
   
-  let videoElement: HTMLVideoElement;
-  let isLoading = true;
-  let hasError = false;
+  let videoElement: HTMLVideoElement | null = null;
+  let isLoading = $state(true);
+  let hasError = $state(false);
+  let isInitialized = $state(false);
   
-  onMount(() => {
-    if (videoElement) {
-      // Mux HLS stream URL
-      const streamUrl = `https://stream.mux.com/${playbackId}.m3u8`;
-      
-      // Check if browser supports HLS
-      if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-        // Native HLS support (Safari)
-        videoElement.src = streamUrl;
-      } else if (typeof window !== 'undefined' && (window as any).Hls) {
-        // HLS.js for other browsers
-        const hls = new (window as any).Hls();
-        hls.loadSource(streamUrl);
-        hls.attachMedia(videoElement);
-        
-        hls.on((window as any).Hls.Events.MANIFEST_PARSED, () => {
-          isLoading = false;
-        });
-        
-        hls.on((window as any).Hls.Events.ERROR, (event: any, data: any) => {
-          console.error('HLS error:', data);
-          hasError = true;
-          isLoading = false;
-        });
-      } else {
-        // Fallback: try to load HLS.js dynamically
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
-        script.onload = () => {
-          const hls = new (window as any).Hls();
-          hls.loadSource(streamUrl);
-          hls.attachMedia(videoElement);
-          
-          hls.on((window as any).Hls.Events.MANIFEST_PARSED, () => {
-            isLoading = false;
-          });
-          
-          hls.on((window as any).Hls.Events.ERROR, (event: any, data: any) => {
-            console.error('HLS error:', data);
-            hasError = true;
-            isLoading = false;
-          });
-        };
-        script.onerror = () => {
-          hasError = true;
-          isLoading = false;
-        };
-        document.head.appendChild(script);
-      }
-      
-      // Handle video events
+  function initVideo() {
+    if (!videoElement || !playbackId || isInitialized) return;
+    
+    isInitialized = true;
+    
+    // Mux HLS stream URL
+    const streamUrl = `https://stream.mux.com/${playbackId}.m3u8`;
+    
+    // Check if browser supports HLS natively (Safari)
+    if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+      // Native HLS support (Safari)
+      videoElement.src = streamUrl;
       videoElement.addEventListener('loadeddata', () => {
         isLoading = false;
-      });
-      
+      }, { once: true });
       videoElement.addEventListener('error', () => {
         hasError = true;
         isLoading = false;
+      }, { once: true });
+    } else {
+      // Need HLS.js for other browsers
+      const loadHls = () => {
+        if (typeof window === 'undefined' || !videoElement) return;
+        
+        const Hls = (window as any).Hls;
+        if (Hls && Hls.isSupported()) {
+          const hls = new Hls({
+            enableWorker: true,
+            lowLatencyMode: false,
+          });
+          
+          hls.loadSource(streamUrl);
+          hls.attachMedia(videoElement!);
+          
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            isLoading = false;
+          });
+          
+          hls.on(Hls.Events.ERROR, (event: any, data: any) => {
+            console.error('HLS error:', data);
+            if (data.fatal) {
+              switch (data.type) {
+                case Hls.ErrorTypes.NETWORK_ERROR:
+                  hls.startLoad();
+                  break;
+                case Hls.ErrorTypes.MEDIA_ERROR:
+                  hls.recoverMediaError();
+                  break;
+                default:
+                  hasError = true;
+                  isLoading = false;
+                  hls.destroy();
+                  break;
+              }
+            }
+          });
+        } else {
+          hasError = true;
+          isLoading = false;
+        }
+      };
+      
+      // Check if HLS.js is already loaded
+      if (typeof window !== 'undefined' && (window as any).Hls) {
+        loadHls();
+      } else {
+        // Load HLS.js dynamically
+        const existingScript = document.querySelector('script[src*="hls.js"]');
+        if (existingScript) {
+          // Script already exists, wait for it to load
+          existingScript.addEventListener('load', loadHls);
+        } else {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js';
+          script.onload = loadHls;
+          script.onerror = () => {
+            hasError = true;
+            isLoading = false;
+          };
+          document.head.appendChild(script);
+        }
+      }
+      
+      // Handle video events
+      videoElement.addEventListener('error', () => {
+        hasError = true;
+        isLoading = false;
+      }, { once: true });
+    }
+  }
+  
+  // Reactive effect to initialize when element is bound
+  $effect(() => {
+    if (videoElement && playbackId && !isInitialized) {
+      // Use requestAnimationFrame to ensure DOM is ready
+      requestAnimationFrame(() => {
+        initVideo();
       });
     }
   });
