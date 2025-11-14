@@ -1,5 +1,5 @@
 {
-    "title": "Creacion di proyecto",
+    "title": "Project creation",
     "island": "Aruba",
     "dateISO": "2025-11-29T10:00:00-04:00",
     "href": "/spark#workshops",
@@ -7,3 +7,4 @@
     "type": "workshop",
     "facilitators": "Radical Data"
 }
+
