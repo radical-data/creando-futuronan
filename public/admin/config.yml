@@ -1,0 +1,140 @@
+backend:
+  name: github
+  repo: radical-data/creando-futuronan
+  branch: main
+  auth_scope: repo
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Upload "{{path}}"'
+    deleteMedia: 'Delete "{{path}}"'
+
+local_backend: true
+
+# Where uploaded media files go (relative to repo root)
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+publish_mode: editorial_workflow
+
+site_url: "https://creandofuturonan.org"
+
+collections:
+  # 1) Events (src/content/events)
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "src/content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - name: "island"
+        label: "Island"
+        widget: "select"
+        options:
+          - { label: "Aruba", value: "Aruba" }
+          - { label: "Bonaire", value: "Bonaire" }
+          - { label: "Curaçao", value: "Curaçao" }
+          - { label: "Online", value: "Online" }
+      - name: "dateISO"
+        label: "Date & time"
+        widget: "datetime"
+        hint: "Select the event date and time. The timezone will be preserved from your input."
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+      - { name: "href", label: "Link (More info / signup)", widget: "string" }
+      - name: "programme"
+        label: "Programme"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Spark", value: "spark" }
+          - { label: "Sustain", value: "sustain" }
+      - name: "type"
+        label: "Event Type"
+        widget: "string"
+        required: false
+        hint: "e.g., workshop, info session, etc."
+      - name: "facilitators"
+        label: "Facilitators"
+        widget: "string"
+        required: false
+        hint: "Names of event facilitators (comma-separated)"
+
+  # 2) Programmes (src/content/programmes)
+  - name: "programmes"
+    label: "Programmes"
+    label_singular: "Programme"
+    folder: "src/content/programmes"
+    create: false
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "age", label: "Age range label", widget: "string", hint: "e.g., Ages 12–18" }
+      - { name: "blurb", label: "Blurb", widget: "text" }
+      - { name: "href", label: "Programme page URL", widget: "string" }
+
+  # 3) Open Calls (src/content/open-calls)
+  - name: "open-calls"
+    label: "Open Calls"
+    label_singular: "Open Call"
+    folder: "src/content/open-calls"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - name: "programme"
+        label: "Programme"
+        widget: "select"
+        options:
+          - { label: "Spark", value: "spark" }
+          - { label: "Sustain", value: "sustain" }
+      - { name: "title", label: "Title", widget: "string" }
+      - name: "openISO"
+        label: "Opens at"
+        widget: "datetime"
+        required: false
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+        hint: "When the application window opens"
+      - name: "closeISO"
+        label: "Closes at"
+        widget: "datetime"
+        required: false
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+        hint: "When the application window closes"
+      - { name: "applyLink", label: "Apply link (WhatsApp / form)", widget: "string" }
+
+  # 4) Partners (text only; logos stay in Git)
+  - name: "partners"
+    label: "Partners"
+    label_singular: "Partner"
+    folder: "src/content/partners"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    identifier_field: "name"
+    fields:
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "href", label: "Website (optional)", widget: "string", required: false }
+      - name: "logo"
+        label: "Logo image path"
+        widget: "string"
+        required: true
+        default: "./logo.png"
+        hint: "Relative path to logo image (e.g., ./partner-name.png). Image must be added to src/content/partners via Git separately."
+      - { name: "blurb", label: "Blurb", widget: "text", required: false }
+
