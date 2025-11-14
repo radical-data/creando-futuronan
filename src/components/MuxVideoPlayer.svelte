@@ -18,6 +18,11 @@
   
   const l = $derived(labels[lang] ?? labels.pap);
   
+  // Generate Mux thumbnail URL from playbackId
+  const muxThumbnail = $derived(
+    playbackId ? `https://image.mux.com/${playbackId}/thumbnail.png?width=1280&height=720&fit_mode=smartcrop` : ''
+  );
+  
   let videoElement: HTMLVideoElement | null = null;
   let isLoading = $state(true);
   let hasError = $state(false);
@@ -127,8 +132,16 @@
 
 <div class="relative w-full h-full">
   {#if isLoading}
-    <div class="absolute inset-0 flex items-center justify-center bg-gray-100">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-600"></div>
+    <div class="absolute inset-0 flex items-center justify-center bg-gray-100 overflow-hidden">
+      {#if muxThumbnail}
+        <img
+          src={muxThumbnail}
+          alt=""
+          class="w-full h-full object-cover"
+        />
+      {:else}
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-600"></div>
+      {/if}
     </div>
   {/if}
   
@@ -145,7 +158,7 @@
   
   <video
     bind:this={videoElement}
-    {poster}
+    poster={poster || muxThumbnail}
     {autoplay}
     {muted}
     {loop}
