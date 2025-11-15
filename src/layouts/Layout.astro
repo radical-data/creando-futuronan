@@ -5,7 +5,8 @@ import { ViewTransitions } from 'astro:transitions';
 import { Image } from "astro:assets";
 import creativeIndustriesLogo from "../../public/logos/creative-industries.svg";
 import { normaliseLocale, useTranslations } from "../i18n/utils";
-import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import LanguageSwitcher from "../components/LanguageSwitcher.svelte";
+import MobileNav from "../components/MobileNav.svelte";
 
 interface Props {
   title?: string;
@@ -25,7 +26,7 @@ const t = useTranslations(lang);
 <html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -35,13 +36,13 @@ const t = useTranslations(lang);
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="bg-[--color-bg] text-black font-sans antialiased">
+  <body class="bg-[--color-bg] text-black font-sans antialiased overflow-x-hidden">
     <header
-      class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between"
+      class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between gap-4"
     >
       <a
         href="/"
-        class="flex items-center gap-3"
+        class="flex items-center gap-3 flex-shrink-0"
         aria-label="Creando Futuronan — Home"
       >
         <img
@@ -54,21 +55,34 @@ const t = useTranslations(lang);
           decoding="async"
         />
       </a>
-      <nav class="flex items-center gap-6 text-sm" aria-label={t("nav.main")}>
-        <a href="/spark" class="hover:underline focus-ring focus-ring-spark flex items-center gap-2">
-          <span class="stream-indicator stream-indicator-spark"></span>
+      <!-- Desktop Navigation -->
+      <nav class="hidden sm:flex items-center gap-4 lg:gap-6 text-sm" aria-label={t("nav.main")}>
+        <a href="/spark" class="hover:underline focus-ring focus-ring-spark flex items-center gap-2 whitespace-nowrap">
+          <span class="stream-indicator stream-indicator-spark flex-shrink-0"></span>
           {t("nav.spark")}
         </a>
-        <a href="/sustain" class="hover:underline focus-ring focus-ring-sustain flex items-center gap-2">
-          <span class="stream-indicator stream-indicator-sustain"></span>
+        <a href="/sustain" class="hover:underline focus-ring focus-ring-sustain flex items-center gap-2 whitespace-nowrap">
+          <span class="stream-indicator stream-indicator-sustain flex-shrink-0"></span>
           {t("nav.sustain")}
         </a>
-        <a href="/about" class="hover:underline focus-ring">
+        <a href="/about" class="hover:underline focus-ring whitespace-nowrap">
           {t("nav.about")}
         </a>
 
-        <LanguageSwitcher lang={lang} />
+        <LanguageSwitcher lang={lang} currentPath={Astro.url.pathname} client:load />
       </nav>
+
+      <!-- Mobile Navigation -->
+      <MobileNav
+        lang={lang}
+        currentPath={Astro.url.pathname}
+        navItems={{
+          spark: t("nav.spark"),
+          sustain: t("nav.sustain"),
+          about: t("nav.about"),
+        }}
+        client:load
+      />
     </header>
 
     <main>
