@@ -121,8 +121,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply overflow-x-hidden;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+    max-width: 100vw;
   }
 }
 
@@ -154,6 +158,12 @@
   
   .h3 {
     @apply text-lg sm:text-xl;
+  }
+  
+  /* Prevent horizontal overflow */
+  body, html {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 }
 
