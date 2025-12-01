@@ -1,9 +1,5 @@
 {
-  "slug": "spark",
-  "headline": "Creando Spark",
   "sub": "Un espacio pa e restlesnan. Unda code, arte y AI topa.",
-  "aboutContent": "No nota. No guru. Solo ideanan, experimentonan y e hendenan suficientemente salvaje pa proba nan. Haci cosnan raro. Rompi cosnan aburido. Siña haciendu — y desaprendiendo.",
-  "schedule": "Uni cu nos pa 3 sesionnan creativo di sabado unda nos lo hunga cu coding, AI, rednan di comunicacion y diseño digital — no leccionnan aburido, no experencia previo mester. Nos ta siña haciendu pregunta, usando nos propio cultura y experencianan como punto di partida, y trahando hunto como comunidad.",
   "methodologies": [
     {
       "title": "Diseño Contextual",
@@ -18,10 +14,12 @@
       "description": "Sigi bo sparknan; prototipo pa testa e imposibel."
     }
   ],
-  "team": "Co-organisá pa Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives y Afaina de Jong. Mira partners →",
+  "slug": "spark",
+  "aboutContent": "No nota. No guru. Solo ideanan, experimentonan y e hendenan suficientemente salvaje pa proba nan. Haci cosnan raro. Rompi cosnan aburido. Siña haciendu — y desaprendiendo.",
+  "headline": "Creando Spark",
   "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
+  "schedule": "Uni cu nos pa 3 sesionnan creativo di sabado unda nos lo hunga cu coding, AI, rednan di comunicacion y diseño digital — no leccionnan aburido, no experencia previo mester. Nos ta siña haciendu pregunta, usando nos propio cultura y experencianan como punto di partida, y trahando hunto como comunidad.",
   "language": "Sesionnan na Ingles, cu apoyo na Papiamento y Spaño.",
-  "applicationInfo": "Listo pa uni? Mensa nos riba WhatsApp pa cuminsa e proceso. Nos lo guia bo pa uni y contesta cualkier pregunta cu bo tin.",
   "faqs": [
     {
       "question": "Ken por uni?",
@@ -43,6 +41,7 @@
       "question": "Con pa uni?",
       "answer": "Mensa nos riba WhatsApp pa cuminsa e proceso."
     }
-  ]
+  ],
+  "team": "Co-organisá pa Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives y Afaina de Jong. Mira partners →",
+  "applicationInfo": "Listo pa uni? Mensa nos riba WhatsApp pa cuminsa e proceso. Nos lo guia bo pa uni y contesta cualkier pregunta cu bo tin."
 }
-
