@@ -1,9 +1,5 @@
 {
-  "slug": "sustain",
-  "headline": "Creando Sustain",
   "sub": "A school for building futures that actually last — where imagination meets survival skills.",
-  "aboutContent": "You'll learn how to make a living and make a difference — grow your craft and your community. It's not about chasing 'success.' It's about making futures that can hold us.",
-  "schedule": "An intensive 8-session evening laboratory (2× per week) for young creatives. Develop a project prototype rooted in your reality, with mentorship and peer support. Tue & Thu evenings — 11 Nov to 6 Dec (in person). Full attendance required. All participants completing the program receive a stipend.",
   "methodologies": [
     {
       "title": "Contextual Design",
@@ -18,11 +14,13 @@
       "description": "Desire → Systems → Imagination → Making."
     }
   ],
-  "team": "Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. See partners →",
-  "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
-  "language": "Sessions in English, with support in Papiamento and Spanish.",
   "introSession": "Sat, 18 Oct — 11:00 at RAA!. We presented the school's vision and programme. Watch the recorded info session below:",
-  "applicationInfo": "After the intro, submit a short motivation letter or video on WhatsApp: +297 568 9420",
+  "slug": "sustain",
+  "aboutContent": "You'll learn how to make a living and make a difference — grow your craft and your community. It's not about chasing 'success.' It's about making futures that can hold us.",
+  "headline": "Creando Sustain",
+  "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
+  "schedule": "An intensive 8-session evening laboratory (2× per week) for young creatives. Develop a project prototype rooted in your reality, with mentorship and peer support. Tue & Thu evenings — 11 Nov to 6 Dec (in person). Full attendance required. All participants completing the program receive a stipend.",
+  "language": "Sessions in English, with support in Papiamento and Spanish.",
   "faqs": [
     {
       "question": "Who can join?",
@@ -44,6 +42,7 @@
       "question": "How do I apply?",
       "answer": "Attend the intro session, then submit a motivation letter or video on WhatsApp."
     }
-  ]
+  ],
+  "team": "Co-hosted by Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. See partners →",
+  "applicationInfo": "After the intro, submit a short motivation letter or video on WhatsApp: +297 568 9420"
 }
-
