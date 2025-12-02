@@ -1,9 +1,5 @@
 {
-  "slug": "sustain",
-  "headline": "Creando Sustain",
   "sub": "Een school voor het bouwen van toekomsten die echt standhouden — waar verbeelding overlevingsvaardigheden ontmoet.",
-  "aboutContent": "Je leert hoe je in je levensonderhoud kunt voorzien en het verschil kunt maken — groei je vakmanschap en je gemeenschap. Het gaat niet om het najagen van 'succes.' Het gaat om het maken van toekomsten die ons kunnen dragen.",
-  "schedule": "Een intensief 8-sessie avondlaboratorium (2× per week) voor jonge creatieven. Ontwikkel een projectprototype geworteld in jouw realiteit, met mentorschap en peer support. Dinsdag- en donderdagavonden — 11 nov tot 6 dec (op locatie). Volledige aanwezigheid vereist. Alle deelnemers die het programma voltooien ontvangen een stipendium.",
   "methodologies": [
     {
       "title": "Contextueel Ontwerp",
@@ -18,11 +14,13 @@
       "description": "Verlangen → Systemen → Verbeelding → Maken."
     }
   ],
-  "team": "Mede-georganiseerd door Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. Zie partners →",
-  "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
-  "language": "Sessies in het Engels, met ondersteuning in Papiamento en Spaans.",
   "introSession": "Zat, 18 okt — 11:00 bij RAA!. We presenteerden de visie en het programma van de school. Bekijk de opgenomen infosessie hieronder:",
-  "applicationInfo": "Na de intro, dien een korte motivatiebrief of video in via WhatsApp: +297 568 9420",
+  "slug": "sustain",
+  "aboutContent": "Je leert hoe je in je levensonderhoud kunt voorzien en het verschil kunt maken — groei je vakmanschap en je gemeenschap. Het gaat niet om het najagen van 'succes.' Het gaat om het maken van toekomsten die ons kunnen dragen.",
+  "headline": "Creando Sustain",
+  "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
+  "schedule": "Een intensief 8-sessie avondlaboratorium (2× per week) voor jonge creatieven. Ontwikkel een projectprototype geworteld in jouw realiteit, met mentorschap en peer support. Dinsdag- en donderdagavonden — 11 nov tot 6 dec (op locatie). Volledige aanwezigheid vereist. Alle deelnemers die het programma voltooien ontvangen een stipendium.",
+  "language": "Sessies in het Engels, met ondersteuning in Papiamento en Spaans.",
   "faqs": [
     {
       "question": "Wie kan deelnemen?",
@@ -44,6 +42,7 @@
       "question": "Hoe kan ik me aanmelden?",
       "answer": "Woon de introsessie bij, dien dan een motivatiebrief of video in via WhatsApp."
     }
-  ]
+  ],
+  "team": "Mede-georganiseerd door Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives & Afaina de Jong. Zie partners →",
+  "applicationInfo": "Na de intro, dien een korte motivatiebrief of video in via WhatsApp: +297 568 9420"
 }
-
