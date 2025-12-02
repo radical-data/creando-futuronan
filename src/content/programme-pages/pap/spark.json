@@ -1,47 +1,47 @@
 {
-  "sub": "Un espacio pa e restlesnan. Unda code, arte y AI topa.",
+  "sub": "Un lugar pa esun nan inqieto. Unda code, arte y Inteligencia Artificial ta topa.",
   "methodologies": [
     {
       "title": "Diseño Contextual",
-      "description": "Nos ta cuminsa for di loke ta rond di nos — nos historia, materialnan, ambiente."
+      "description": "Nos ta cuminsa cu loke ta rondona nos — nos historia, materialnan, ambiente."
     },
     {
       "title": "Educacion Popular",
-      "description": "Tur hende ta un maestro, tur hende ta un estudiante. Curiosidad ta e curriculum."
+      "description": "Tur hende ta un docente, tur hende ta un studiante. Curiosidad ta e curiculo."
     },
     {
       "title": "Radical Data",
-      "description": "Sigi bo sparknan; prototipo pa testa e imposibel."
+      "description": "Sigi bo chispitanan; y test loke ta imposibel."
     }
   ],
   "slug": "spark",
-  "aboutContent": "No nota. No guru. Solo ideanan, experimentonan y e hendenan suficientemente salvaje pa proba nan. Haci cosnan raro. Rompi cosnan aburido. Siña haciendu — y desaprendiendo.",
+  "aboutContent": "Sin examen. Sin gurus. Djis ideanan, experimento y hende cu suficiente curashi pa purba. Traha cos straño, kibra cosnan cu ta laf. Siña door di haci — y e proceso di unlearning.",
   "headline": "Creando Spark",
   "location": "Brenchies Lab Makerspace na Universidad di Aruba.",
-  "schedule": "Uni cu nos pa 3 sesionnan creativo di sabado unda nos lo hunga cu coding, AI, rednan di comunicacion y diseño digital — no leccionnan aburido, no experencia previo mester. Nos ta siña haciendu pregunta, usando nos propio cultura y experencianan como punto di partida, y trahando hunto como comunidad.",
-  "language": "Sesionnan na Ingles, cu apoyo na Papiamento y Spaño.",
+  "schedule": "Uni cu nos pa 3 sesionnan creativo di diasabra unda nos lo hunga cu coding, Intiligencia Artificial, rednan di comunicacion y diseño digital — lesnan cu no ta laf, y no tin mester di experencia. Nos ta siña door di haci pregunta, uzando nos propio cultura y experencianan como punto di salida, y trahando hunto como comunidad.",
+  "language": "Sesion na Ingles, cu apoyo na Papiamento y Spaño.",
   "faqs": [
     {
       "question": "Ken por uni?",
       "answer": "Hobennan di edad 12–18, basá na Aruba."
     },
     {
-      "question": "Mester tin experencia previo?",
-      "answer": "No — solo curiosidad."
+      "question": "Mester tin experencia?",
+      "answer": "No — solamente curiosidad."
     },
     {
       "question": "Tin costo?",
       "answer": "Participacion ta gratis; materialnan proveí."
     },
     {
-      "question": "Unda ta tuma luga e sesionnan?",
-      "answer": "Tur e sesionnan ta tuma luga na RAA! na Oranjestad."
+      "question": "Unda lo tuma luga?",
+      "answer": "Tur e sesionnan ta tuma luga na Brenchies Lab na Universidad di Aruba."
     },
     {
       "question": "Con pa uni?",
-      "answer": "Mensa nos riba WhatsApp pa cuminsa e proceso."
+      "answer": "Tuma contacto cu nos via WhatsApp pa cuminsa e proceso."
     }
   ],
   "team": "Co-organisá pa Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives y Afaina de Jong. Mira partners →",
-  "applicationInfo": "Listo pa uni? Mensa nos riba WhatsApp pa cuminsa e proceso. Nos lo guia bo pa uni y contesta cualkier pregunta cu bo tin."
+  "applicationInfo": "Cla pa join? Tuma contacto cu nos via WhatsApp pa cuminsa e proceso. Nos lo guia bo pa uni cu nos y contesta cualkier pregunta cu bo tin."
 }
