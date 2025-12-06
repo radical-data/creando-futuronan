@@ -1,9 +1,5 @@
 {
-  "slug": "sustain",
-  "headline": "Creando Sustain",
-  "sub": "Un escuela pa construi futuro cu realmente ta dura — unda imaginacion topa cu habilidadnan di sobrevivencia.",
-  "aboutContent": "Bo lo siña con pa gana bida y haci diferencia — crece bo oficio y bo comunidad. No ta trata di sigui 'exito.' Ta trata di haci futuro cu por sostene nos.",
-  "schedule": "Un laboratorio intensivo di 8 sesionnan di anochi (2× pa siman) pa creativonan hoben. Desaroya un prototipo di proyecto basa den bo realidad, cu mentoria y apoyo di compañeronan. Anochi di martes y huebes — 11 Nov pa 6 Dec (presencial). Asistencia completo ta requirí. Tur participante cu ta completa e programa ta ricibi un stipendio.",
+  "sub": "Un scol pa construi futuro cu realmente ta dura — unda imaginacion ta topa cu habilidadnan di sobrevivencia.",
   "methodologies": [
     {
       "title": "Diseño Contextual",
@@ -18,32 +14,35 @@
       "description": "Deseo → Sistema → Imaginacion → Haci."
     }
   ],
-  "team": "Co-organisá pa Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives y Afaina de Jong. Mira partners →",
+  "introSession": "Diasabra, 18 di Oktober — 11:00 na RAA!. Nos a presenta e vision y programa di e scol. Mira e sesion di informacion grabá abou:",
+  "slug": "sustain",
+  "aboutContent": "Bo lo siña con pa gana den bida y haci un diferencia — crece bo oficio y bo comunidad. No ta trata di obtene 'exito.' Ta trata di traha futuro cu por sostene nos.",
+  "headline": "Creando Sustain",
   "location": "RAA! (Residencia Artistico Aruba)\nCaya Betico Croes 110, Oranjestad, Aruba",
+  "schedule": "Un laboratorio intensivo di 8 sesion parti anochi (2× pa siman) pa creativonan hoben. Desaroya un prototipo di proyecto basa den bo realidad, cu guia y apoyo di compañeronan. Anochi di diamars y diahuebs — 11 Nov pa 6 Dec (den persona). Asistencia completo ta rekeri. Tur participante cu ta completa e programa ta ricibi un compensacion financiero.",
   "language": "Sesionnan na Ingles, cu apoyo na Papiamento y Spaño.",
-  "introSession": "Saba, 18 Oct — 11:00 na RAA!. Nos a presenta e vision y programa di e escuela. Mira e sesion di informacion grabá abou:",
-  "applicationInfo": "Despues di e intro, entrega un carta di motivacion corto o video riba WhatsApp: +297 568 9420",
   "faqs": [
     {
-      "question": "Ken por uni?",
-      "answer": "Creativonan hoben di edad 18–30, basá na e islanan ABC SSS."
+      "question": "Ken por join?",
+      "answer": "Creativonan hoben di edad 18–28, basá na e islanan ABC SSS."
     },
     {
-      "question": "Ki ta e compromiso di tempo?",
-      "answer": "8 sesionnan di anochi (2× pa siman) for di 11 Nov pa 6 Dec. Asistencia completo ta requirí."
+      "question": "Kico ta e compromiso di tempo?",
+      "answer": "8 sesion parti anochi (2× pa siman) for di 11 Nov pa 6 Dec. Asistencia completo ta rekeri."
     },
     {
       "question": "Tin apoyo financiero?",
-      "answer": "Si, un stipendio ta ser otorgá despues di completa e programa."
+      "answer": "Si, tin un compensashon financiero cu ta ser otorgá despues di completa e programa."
     },
     {
-      "question": "Ki lo bo crea?",
-      "answer": "Bo lo desaroya un prototipo di proyecto basa den bo realidad, cu mentoria y apoyo di compañeronan."
+      "question": "Kico lo bo crea?",
+      "answer": "Bo lo desaroya un prototipo di proyecto basa den bo realidad, cu guia y apoyo di compañeronan."
     },
     {
       "question": "Con pa aplica?",
-      "answer": "Asisti e sesion di intro, despues entrega un carta di motivacion o video riba WhatsApp."
+      "answer": "Asisti e sesion di intro, despues entrega un carta di motivacion of video via WhatsApp."
     }
-  ]
+  ],
+  "team": "Co-organisá pa Radical Data, Plataforma Aruba, Metabolic Foundation, Counter/Narratives y Afaina de Jong. Mira partners →",
+  "applicationInfo": "Despues di e intro, entrega un carta di motivacion cortico of un video via WhatsApp: +297 568 9420"
 }
-
