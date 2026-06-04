@@ -7,6 +7,12 @@ import MailchimpForm from "../components/join/MailchimpForm.svelte";
 const lang: Lang = normaliseLocale(Astro.currentLocale);
 const t = useTranslations(lang);
 
+// Detect QR kiosk mode from query parameter
+const showQR = Astro.url.searchParams.has("qr") || Astro.url.searchParams.get("qr") === "true";
+
+// Canonical URL (without query parameters)
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
 // Event details - these can be moved to CMS or config later
 const eventDetails = {
   title: t("join.eventTitle"),
@@ -31,6 +37,7 @@ const eventDetails = {
 <SiteLayout
   title="Join — Creando Futuronan"
   description="Join our mailing list and stay connected with Creando Futuronan."
+  canonical={canonicalUrl}
 >
   <!-- Section 1: Hero -->
   <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
@@ -77,6 +84,24 @@ const eventDetails = {
           client:load
         />
       </div>
+      {showQR && (
+        <div class="mt-8 flex flex-col items-center gap-3 text-center">
+          <p class="text-sm text-black/70">
+            Want this page on your own phone?
+          </p>
+          <div class="p-3 rounded-2xl border border-black/10 bg-white shadow-sm">
+            <img
+              src="/assets/qr-join.png"
+              alt="Scan to open this page on your phone"
+              class="w-32 h-32 sm:w-40 sm:h-40"
+              loading="lazy"
+            />
+          </div>
+          <p class="text-xs text-black/60">
+            Scan the QR code to open creandofuturonan.org/join
+          </p>
+        </div>
+      )}
     </div>
   </section>
 

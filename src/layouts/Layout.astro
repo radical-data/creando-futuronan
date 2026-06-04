@@ -11,11 +11,13 @@ import MobileNav from "../components/MobileNav.svelte";
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const {
   title = "Creando Futuronan",
   description = "A practical school for design & digital culture in Aruba.",
+  canonical,
 } = Astro.props;
 
 const lang = normaliseLocale(Astro.currentLocale);
@@ -32,6 +34,10 @@ const t = useTranslations(lang);
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogDefault.src} />
     <meta name="theme-color" content="#003CE5" />
+
+    {canonical && (
+      <link rel="canonical" href={canonical} />
+    )}
 
     <title>{title}</title>
     <ViewTransitions />
